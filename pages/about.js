@@ -1,8 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-
 export default function About() {
   return (
-       About
+    <div className="container">
+       <h2 className="title">About</h2>
+       </div>
   )
 }

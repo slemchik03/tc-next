@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 // Import Swiper React components
 //import { Swiper, SwiperSlide } from 'swiper/react';
 //import $ from 'jquery';
@@ -18,7 +17,7 @@ export default function Home() {
                         <div className="intro__left">
                             <h1>Вилочные погрузчики и техника <span>для склада с доставкой по России</span></h1>
                             <div className="intro__btns">
-                               <Link href="/catalog" className="intro__link"><a>Перейти в каталог </a></Link>
+                                <a href="#" className="intro__link">Перейти в каталог</a>
                                 <button className="intro__btn">Задать вопрос менеджеру</button>
                             </div>
                             <div className="intro__statistic">
@@ -97,7 +96,7 @@ export default function Home() {
                     <div className="our-tech__wrapper">
                         <div className="our-tech__content">
                             <h2 className="title">Наша техника</h2>
-                           <Link href="/catalog" className="our-tech__link"><a> Перейти в каталог </a></Link>
+                            <a href="/catalog" className="our-tech__link">Перейти в каталог</a>
                             <div className="our-tech__slider-btns">
                                 <div className="our-tech__prev">
                                     <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -198,7 +197,7 @@ export default function Home() {
                                 <span>распродажа техники</span> с максимальной скидкой
                             </div>
                             <div className="sale__link">
-                                 <Link href="/catalog" ><a> Перейти в каталог </a></Link>
+                                Перейти в каталог
                             </div>
                         </div>
                     </div>
@@ -288,7 +287,44 @@ export default function Home() {
                         <div className="news__inner">
                             <div className="news__slider">
                                 <div className="swiper-wrapper">
-                                 
+                                    <div className="news__item swiper-slide">
+                                        <div className="news__item-img">
+                                            <img src="/news/img-1.webp" alt=""  />
+                                        </div>
+                                        <p className="news__item-date">17.02.2022</p>
+                                        <p className="news__item-title">Поздравляем Вас с 23 февраля!</p>
+                                        <p className="news__item-text">
+                                            Здравствуйте, дорогие друзья! <br />
+                                            Команда Warehouse automation <br />
+                                            от всей души поздравляет <br />
+                                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br />
+                                            Команда Warehouse automation
+                                        </p>
+                                        <a href="/news" className="news__item-link">Читать полностью</a>
+                                    </div>
+                                    <div className="news__item swiper-slide">
+                                        <div className="news__item-img">
+                                            <img src="/news/img-2.webp" alt=""  />
+                                        </div>
+                                        <p className="news__item-date">17.02.2022</p>
+                                        <p className="news__item-title">Преимущества погрузчика EP</p>
+                                        <p className="news__item-text">
+                                            Помимо превосходных технических характеристик немаловажным остается факт комфорта эксплуатации. И в этом погрузчик EP преуспевает. Помимо превосходных технических характеристик немаловажным остается факт комфорта эксплуатации. И в этом погрузчик EP преуспевает
+                                        </p>
+                                        <a href="#" className="news__item-link">Читать полностью</a>
+                                    </div>
+                                    <div className="news__item swiper-slide">
+                                        <div className="news__item-img">
+                                            <img src="/news/img-3.webp" alt=""  />
+                                        </div>
+                                        <p className="news__item-date">17.02.2022</p>
+                                        <p className="news__item-title">Новая техника на складе</p>
+                                        <p className="news__item-text">
+                                            На склад Warehouse automation поступила большая партия складской техники EP.
+                                            Среди представленных к продаже моделей – новые погрузчики. На склад Warehouse automation поступила большая партия складской техники EP
+                                        </p>
+                                        <a href="#" className="news__item-link">Читать полностью</a>
+                                    </div>
                                     <div className="news__item swiper-slide">
                                         <div className="news__item-img">
                                             <img src="/news/img-2.webp" alt=""  />
@@ -299,13 +335,13 @@ export default function Home() {
                                             На склад Warehouse automation поступила большая партия складской техники EP.
                                             Среди представленных к продаже моделей – новые погрузчики. На склад Warehouse automation поступила большая партия складской техники EP
                                         </p>
-                                       <Link href="/news/new-teknik" className="news__item-link"><a>Читать полностью </a></Link>
+                                        <a href="#" className="news__item-link">Читать полностью</a>
                                     </div>
                                 </div>
                                 <div className="swiper-scrollbar"></div>
                             </div>
                         </div>
-                       <Link href="/news" className="news__link"><a>Читать все новости </a></Link>
+                        <a href="/news" className="news__link">Читать все новости</a>
                     </div>
                 </div>
             </section>
@@ -339,8 +375,8 @@ export default function Home() {
                                 </div>
                             </form>
                         </div>
-                       <a href="https://yandex.uz/maps/213/moscow/house/likhoborskaya_naberezhnaya_3s9/Z04YcwVhQUICQFtvfXR0dXxrZg==/?ll=37.520370%2C55.853907&z=17.54"  id="map-block" className="map__block">
-                         </a>
+                        <a href="https://yandex.uz/maps/213/moscow/house/likhoborskaya_naberezhnaya_3s9/Z04YcwVhQUICQFtvfXR0dXxrZg==/?ll=37.520370%2C55.853907&z=17.54"  id="map-block" className="map__block">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -388,7 +424,7 @@ export default function Home() {
                     </div>
                     <div className="thanks__title"><span>Спасибо.</span> <br /> Заявка отправлена!</div>
                     <div className="thanks__subtitle">Наш менеджер получил Вашу заявку и скоро свяжется с Вами.</div>
-                   <Link href="/#" className="thanks__link"><a>Главная страница </a></Link>
+                    <a href="#" className="thanks__link">Главная страница</a>
                 </div>
             </div>
         </div>
@@ -479,5 +515,7 @@ export default function Home() {
             </div>
         </div>
     </div>
+
+	
   )
 }
