@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import $ from 'jquery';
+// Import Swiper styles
+import 'swiper/css';
 
 export default function Home() {
   return (
-   	
     <div className="wrapper" id="up">
         <header className="header">
             <div className="container">
@@ -15,19 +17,21 @@ export default function Home() {
                         <span></span>
                         <span></span>
                     </div>
-                    <a href="index.html" className="header__logo">
-                        <img src="images/logo.svg" alt="logo">
+                    <div className="header__logo">
+                    <a href="index.html" >
+                        <Image src="/logo.svg" alt="logo" layout='fill' objectFit="contain" />
                         <p className="header__logo-text">Вилочные погрузчики и техника для склада с доставкой по России
 						</p>
 						
                     </a>
+                    </div>
                     <a href="index.html" className="header__mobile-logo">
-                        <img src="images/logo.svg" alt="logo">
+                        <Image src="/logo.svg" alt="logo" layout='fill' />
 						
                     </a>
                     <div className="header__location">
                         <div className="header__location-icon">
-                            <img src="images/location-icon.svg" alt="location">
+                            <Image src="/location-icon.svg" alt="location" layout='fill' />
                         </div>
                         <div className="header__location-info">
                             <div className="header__location-city">Москва</div>
@@ -36,7 +40,7 @@ export default function Home() {
                     </div>
                     <div className="header__telephone">
                         <div className="header__telephone-icon">
-                            <img src="images/call-icon.svg" alt="call">
+                            <Image src="/call-icon.svg" alt="call" layout='fill' />
                         </div>
                         <a href="tel:+74951667733" className="header__telephone-number">+7 (495) 166-77-33</a>
                     </div>
@@ -70,7 +74,7 @@ export default function Home() {
                 </nav>
                 <div className="menu__location">
                     <div className="menu__location-icon">
-                        <img src="images/location-icon.svg" alt="location">
+                        <Image src="/location-icon.svg" alt="location"  layout='fill' />
                     </div>
                     <div className="menu__location-info">
                         <div className="menu__location-city">Москва</div>
@@ -79,7 +83,7 @@ export default function Home() {
                 </div>
                 <div className="menu__telephone">
                     <div className="menu__telephone-icon">
-                        <img src="images/call-icon.svg" alt="call">
+                        <Image src="/call-icon.svg" alt="call" layout='fill'  />
                     </div>
                     <a href="tel:+74951667733" className="menu__telephone-number">+7 (495) 166-77-33</a>
                 </div>
@@ -87,11 +91,12 @@ export default function Home() {
                 <div className="menu__social">
                    
                     <div className="menu__social-item">
-                        <a href="#"><img src="images/social-icons/youtube.svg" alt=""> </a>
+                        <a href="#"><Image src="/social-icons/youtube.svg" alt="" layout='fill' ></Image> </a>
                     </div>
                  
                     <div className="menu__social-item">
-                        <a href="https://api.whatsapp.com/send/?phone=79167377607&text=Обязательно отправьте это сообщение и дождитесь ответа&app_absent=0"><img src="images/social-icons/whatsapp.svg" alt=""> </a>
+                        <a href="https://api.whatsapp.com/send/?phone=79167377607&text=Обязательно отправьте это сообщение и дождитесь ответа&app_absent=0">
+                            <Image src="/social-icons/whatsapp.svg" alt="" layout='fill' /> </a>
                     </div>
                 </div>
             </div>
@@ -124,10 +129,10 @@ export default function Home() {
                         </div>
                         <div className="intro__right">
                             <div className="intro__bg-elem">
-                                <img src="images/s1-elem.webp" alt="">
+                                <Image src="/s1-elem.webp" alt="" layout='fill' />
                             </div>
                             <div className="intro__bg-elem2">
-                                <img src="images/s1-elem2.webp" alt="">
+                                <Image src="/s1-elem2.webp" alt="" layout='fill' />
                             </div>
                         </div>
                     </div>
@@ -200,21 +205,21 @@ export default function Home() {
                         <div className="our-tech__slider">
                             <div className="swiper-wrapper">
                                 <div className="our-tech__slider-item swiper-slide">
-                                    <img className="our-tech-slide3" src="images/3.webp" alt="">
+                                    <Image className="our-tech-slide3" src="/3.webp" alt="" layout='fill' />
                                     <button data-filter className="our-tech__btn3">
-                                        <img src="images/our-tech-btn.svg" alt="btn">
+                                        <Image src="/our-tech-btn.svg" alt="btn"  layout='fill' />
                                     </button>
                                 </div>
                                 <div className="our-tech__slider-item swiper-slide">
-                                    <img className="our-tech-slide1" src="images/1.webp" alt="">
+                                    <Image className="our-tech-slide1" src="/1.webp" alt="" layout='fill' />
                                     <button data-filter className="our-tech__btn1">
-                                        <img src="images/our-tech-btn.svg" alt="btn">
+                                        <Image src="/our-tech-btn.svg" alt="btn" layout='fill' />
                                     </button>
                                 </div>
                                 <div className="our-tech__slider-item swiper-slide">
-                                    <img className="our-tech-slide2" src="images/2.webp" alt="">
+                                    <Image className="our-tech-slide2" src="/2.webp" alt="" layout='fill' />
                                     <button data-filter className="our-tech__btn2">
-                                        <img src="images/our-tech-btn.svg" alt="btn">
+                                        <Image src="/our-tech-btn.svg" alt="btn" layout='fill' />
                                     </button>
                                 </div>
                             </div>
@@ -229,19 +234,19 @@ export default function Home() {
                         <div className="delivery__content">
                             <h2 className="title delivery__title">ДОСТАВКА</h2>
                             <div className="delivery__content-bg">
-                                <img src="images/vector-map.webp" alt="">
+                                <Image src="/vector-map.webp" layout='fill' alt="" />
                             </div>
                             <div className="delivery__content-block">
                                 <div className="delivery__item">
-                                    <img src="images/dot-elem.svg" alt="icon">
+                                    <Image src="/dot-elem.svg" alt="icon" layout='fill' />
                                     <p className="delivery__text">Доставка осуществляется в любой регион России</p>
                                 </div>
                                 <div className="delivery__item">
-                                    <img src="images/dot-elem.svg" alt="icon">
+                                    <Image src="/dot-elem.svg" alt="icon"  layout='fill' />
                                     <p className="delivery__text">До грузового терминала транспортной компании продукция доставляется бесплатно</p>
                                 </div>
                                 <div className="delivery__item">
-                                    <img src="images/dot-elem.svg" alt="icon">
+                                    <Image src="/dot-elem.svg" alt="icon"  layout='fill' />
                                     <p className="delivery__text">В дальнейшем клиент оплачивает услуги транспортной компании по действующим тарифам</p>
                                 </div>
                             </div>
@@ -251,7 +256,7 @@ export default function Home() {
                             <p className="delivery__form-subtitle">Оставьте свой номер, и мы перезвоним вам</p>
                             <form action="/">
                                 <div className="delivery__form-item">
-                                    <input className="delivery__form-input" type="text" name="phone" placeholder="Ваш номер телефона"></input>
+                                    <input className="delivery__form-input" type="text" name="phone" placeholder="Ваш номер телефона" />
                                 </div>
                                 <div className="delivery__form-item">
                                     <input className="delivery__form-input" type="text" name="name" placeholder="Ваше имя"></input>
@@ -294,27 +299,27 @@ export default function Home() {
             <section id="lizing" className="lizing">
                 <div className="container">
                     <div className="lizing__wrapper">
-                        <div className="lizing__img">
-                            <img src="images/lizing-img.webp" alt="img">
+                        <div className="lizing__Image">
+                            <Image src="/lizing-Image.webp" alt="Лизинг"  layout='fill' />
                         </div>
                         <div className="lizing__content">
                             <h2 className="title lizing__title">Лизинг</h2>
                             <div className="lizing__items">
                                 <div className="lizing__item">
-                                    <img src="images/dot-elem.svg" alt="icon">
+                                    <Image src="/dot-elem.svg" alt="icon"  layout='fill'  />
                                     <p className="lizing__text">
                                         Наша Компания сотрудничает с ведущими поставщиками и производителями специальной техники и оборудования, что даёт нашим клиентам возможность приобрести в лизинг спецтехнику на максимально выгодных условиях.
                                     </p>
                                 </div>
                                 <div className="lizing__item">
-                                    <img src="images/dot-elem.svg" alt="icon">
+                                    <Image src="/dot-elem.svg" alt="icon"  layout='fill'  />
                                     <p className="lizing__text">
                                         Лизинг позволяет юридическим лицам абсолютно легально оптимизировать налогообложение, относя лизинговые платежи 
                                         на затраты, что намного уменьшает налогооблагаемую прибыль.
                                     </p>
                                 </div>
                                 <div className="lizing__item">
-                                    <img src="images/dot-elem.svg" alt="icon">
+                                    <Image src="/dot-elem.svg" alt="Лизинг"  layout='fill' />
                                     <p className="lizing__text">
                                         В момент окончания срока действия договора имущество, переданное в лизинг переходит в собственность клиента 
                                         по остаточной (выкупной) стоимости.
@@ -334,22 +339,22 @@ export default function Home() {
                 <div className="partners__slider">
                     <div className="swiper-wrapper partners__wrapper">
                         <div className="partners__item swiper-slide">
-                            <img src="images/partners/sber-lizing.webp" alt="">
+                            <Image src="/partners/sber-lizing.webp" alt="Сбер лизинг"  layout='fill'  />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="images/partners/alfa-lizing.webp" alt="">
+                            <Image src="/partners/alfa-lizing.webp" alt="" layout='fill' />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="images/partners/balt-lizing.webp" alt="">
+                            <Image src="/partners/balt-lizing.webp" alt="" layout='fill' />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="images/partners/europlan.webp" alt="">
+                            <Image src="/partners/europlan.webp" alt="" layout='fill' />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="images/partners/peco.webp" alt="">
+                            <Image src="/partners/peco.webp" alt="" layout='fill' />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="images/partners/sovkombank.webp" alt="">
+                            <Image src="/partners/sovkombank.webp" alt="" layout='fill' />
                         </div>
                     </div>
                 </div>
@@ -375,8 +380,8 @@ export default function Home() {
                             <div className="news__slider">
                                 <div className="swiper-wrapper">
                                     <div className="news__item swiper-slide">
-                                        <div className="news__item-img">
-                                            <img src="images/news/img-1.webp" alt="">
+                                        <div className="news__item-Image">
+                                            <Image src="/news/Image-1.webp" alt="" layout='fill' />
                                         </div>
                                         <p className="news__item-date">17.02.2022</p>
                                         <p className="news__item-title">Поздравляем Вас с 23 февраля!</p>
@@ -390,8 +395,8 @@ export default function Home() {
                                         <a href="/news" className="news__item-link">Читать полностью</a>
                                     </div>
                                     <div className="news__item swiper-slide">
-                                        <div className="news__item-img">
-                                            <img src="images/news/img-2.webp" alt="">
+                                        <div className="news__item-Image">
+                                            <Image src="/news/Image-2.webp" alt="" layout='fill' />
                                         </div>
                                         <p className="news__item-date">17.02.2022</p>
                                         <p className="news__item-title">Преимущества погрузчика EP</p>
@@ -401,8 +406,8 @@ export default function Home() {
                                         <a href="#" className="news__item-link">Читать полностью</a>
                                     </div>
                                     <div className="news__item swiper-slide">
-                                        <div className="news__item-img">
-                                            <img src="images/news/img-3.webp" alt="">
+                                        <div className="news__item-Image">
+                                            <Image src="/news/Image-3.webp" alt="" layout='fill' />
                                         </div>
                                         <p className="news__item-date">17.02.2022</p>
                                         <p className="news__item-title">Новая техника на складе</p>
@@ -413,8 +418,8 @@ export default function Home() {
                                         <a href="#" className="news__item-link">Читать полностью</a>
                                     </div>
                                     <div className="news__item swiper-slide">
-                                        <div className="news__item-img">
-                                            <img src="images/news/img-2.webp" alt="">
+                                        <div className="news__item-Image">
+                                            <Image src="/news/Image-2.webp" alt="" layout='fill' />
                                         </div>
                                         <p className="news__item-date">17.02.2022</p>
                                         <p className="news__item-title">Новая техника на складе</p>
@@ -474,10 +479,10 @@ export default function Home() {
                 <div className="footer__wrapper">
                     <div className="footer__item">
                         <a href="#top" className="footer__logo">
-                            <img src="images/logo.svg" alt="logo">
+                            <Image src="/logo.svg" alt="logo" layout='fill' />
                         </a>
                         <a href="#" className="footer__app-link">
-                            <img src="images/google-play.webp" alt="link">
+                            <Image src="/google-play.webp" alt="link" layout='fill' />
                         </a>
                     </div>
                     <div className="footer__item">
@@ -518,14 +523,14 @@ export default function Home() {
                     </p>
                     <p className="footer__bottom-policy">Политика конфиденциальности</p>
                     <a href="#" className="footer__bottom-app-link">
-                        <img src="images/google-play.webp" alt="link">
+                        <Image src="/google-play.webp" alt="link" layout='fill' />
                     </a>
                     <div className="footer__bottom-social">
                         
-                        <a href="#" className="footer__social"><img src="images/social-icons/footer-youtube.svg" >
+                        <a href="#" className="footer__social"><Image src="/social-icons/footer-youtube.svg" layout='fill' />
 						
 						</a>
-                        <a href="#" className="footer__social"><img src="images/social-icons/footer-whatsapp.svg" alt=""> </a>
+                        <a href="#" className="footer__social"><Image src="/social-icons/footer-whatsapp.svg" alt="" layout='fill' /> </a>
                     </div>
                 </div>
             </div>
