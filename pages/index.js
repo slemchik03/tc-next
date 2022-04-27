@@ -19,7 +19,7 @@ export default function Home() {
                     </div>
                     <div className="header__logo">
                     <a href="index.html" >
-                        <Image src="/logo.svg" alt="logo" layout='fill' objectFit="contain" />
+                        <Image src="/logo.svg" alt="logo" width='20px' height="20px" objectFit="contain" />
                         <p className="header__logo-text">Вилочные погрузчики и техника для склада с доставкой по России
 						</p>
 						
