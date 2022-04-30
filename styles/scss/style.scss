@@ -1,0 +1,95 @@
+@import "reset";
+@import "fonts";
+@import "global";
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  &__block {
+    margin-right: 25px;
+    position: relative;
+    &-white {
+      margin-right: 25px;
+      position: relative;
+      &::after {
+        content: url(../../public/breadcrumbs-arrow.svg);
+        position: absolute;
+        top: -1px;
+        right: -15px;
+      }
+      &:last-child::after {
+        display: none;
+      }
+      &:last-child {
+        .breadcrumbs__item {
+          font-weight: 700;
+          color: #df0000;
+        }
+      }
+      &:not(:last-child) .breadcrumbs__item:hover {
+        text-decoration: underline;
+      }
+    }
+    &::after {
+      content: url(../../public/breadcrumbs-arrow.svg);
+      position: absolute;
+      top: -1px;
+      right: -15px;
+    }
+    &:last-child::after {
+      display: none;
+    }
+    &:last-child {
+      .breadcrumbs__item {
+        font-weight: 700;
+        color: #df0000;
+      }
+    }
+    &:not(:last-child) .breadcrumbs__item:hover {
+      text-decoration: underline;
+    }
+  }
+  &__item {
+    display: inline-flex;
+    font-weight: 500;
+    font-size: 14px;
+    color: #202123;
+    &-white {
+      color: #fff;
+    }
+  }
+}
+
+:root {
+  scroll-behavior: smooth;
+}
+
+@import "../scss/blocks/main-page";
+@import "../scss/blocks/service";
+@import "../scss/blocks/news-catalog";
+@import "../scss/blocks/news-page";
+@import "../scss/blocks/company";
+@import "../scss/blocks/catalog";
+@import "../scss/blocks/product-page";
+@import "../scss/blocks/popup";
+@import "../scss/blocks/media-main";
+@import "../scss/blocks/media-news-page";
+@import "../scss/blocks/media-news-catalog";
+@import "../scss/blocks/media-service";
+@import "../scss/blocks/media-product-page";
+@import "../scss/blocks/media-company";
+@import "../scss/blocks/media-catalog";

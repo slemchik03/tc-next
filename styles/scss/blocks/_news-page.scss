@@ -1,0 +1,150 @@
+.news-page {
+  padding-top: 43px;
+  &__title {
+    margin-top: 50px;
+    font-size: 38px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  &__wrapper {
+    margin-top: 30px;
+  }
+  & &__text {
+    color: #fff;
+    &-red {
+      span {
+        font-weight: 700;
+        color: #df0000;
+      }
+    }
+  }
+  &__text2 {
+    margin-top: 30px;
+    color: #fff;
+  }
+  &__text3 {
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 700;
+  }
+  &__list {
+    margin-top: 20px;
+    &-title {
+      font-weight: 700;
+      color: #fff;
+    }
+    ul {
+      margin-top: 30px;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      li {
+        list-style: none;
+        padding-left: 30px;
+        position: relative;
+        &::after {
+          content: url(../../../public/dot-elem-15px.svg);
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+    &-text {
+      color: #fff;
+    }
+  }
+  &__info {
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  &__slider-wrapper {
+    position: relative;
+  }
+  &__pagination {
+    display: none;
+  }
+  &__slider {
+    margin-top: 50px;
+    margin-bottom: 110px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 650px;
+    &-item {
+      img {
+        width: 1218px;
+        height: 650px;
+        object-fit: cover;
+      }
+    }
+  }
+  &__slider-btns {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    bottom: 330px;
+    right: 0;
+    z-index: 10;
+  }
+  &__slider-next,
+  &__slider-prev {
+    cursor: pointer;
+  }
+  .swiper-scrollbar {
+    display: none;
+  }
+  .swiper-button-disabled {
+    svg {
+      path {
+        stroke: #df0000;
+      }
+    }
+  }
+  &__mini-slider {
+    overflow: hidden;
+    position: relative;
+    width: 1218px;
+    &-item {
+      width: 384px;
+      height: 300px;
+      border-radius: 6px;
+      img {
+        width: 384px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+      &.swiper-slide-thumb-active {
+        border: 1px solid #df0000;
+      }
+    }
+  }
+  &__bottom {
+    margin-top: 50px;
+    margin-bottom: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__link {
+    width: 280px;
+    height: 65px;
+    background: #f0f0f0;
+    border: 1px solid #df0000;
+    font-size: 14px;
+    color: #202123;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+  &__date {
+    font-size: 18px;
+    color: #828282;
+  }
+}

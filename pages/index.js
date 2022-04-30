@@ -1,17 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-// Import Swiper React components
-//import { Swiper, SwiperSlide } from 'swiper/react';
-//import $ from 'jquery';
-// Import Swiper styles
-//import 'swiper/css';
+import { SearchVehicleForm } from '../components/SearchVehicleForm'
 
 export default function Home() {
   return (
     <div className="wrapper" id="up">
-     
 
-        <main className="main">
             <section className="intro">
                 <div className="container">
                     <div className="intro__wrapper">
@@ -38,10 +32,10 @@ export default function Home() {
                         </div>
                         <div className="intro__right">
                             <div className="intro__bg-elem">
-                                <img src="/s1-elem.webp" alt=""  />
+                                <Image width='600px' height='600px' src="/s1-elem.webp" alt="" />
                             </div>
                             <div className="intro__bg-elem2">
-                                <img src="/s1-elem2.webp" alt=""  />
+                                <Image width='600px' height='600px' objectFit='contain' src="/s1-elem2.webp" alt="" />
                             </div>
                         </div>
                     </div>
@@ -114,21 +108,21 @@ export default function Home() {
                         <div className="our-tech__slider">
                             <div className="swiper-wrapper">
                                 <div className="our-tech__slider-item swiper-slide">
-                                    <img className="our-tech-slide3" src="/3.webp" alt=""  />
+                                    <img  className="our-tech-slide3" src="/3.webp" alt=""  />
                                     <button data-filter className="our-tech__btn3">
-                                        <img src="/our-tech-btn.svg" alt="btn"   />
+                                        <Image objectFit='cover'  width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"   />
                                     </button>
                                 </div>
                                 <div className="our-tech__slider-item swiper-slide">
                                     <img className="our-tech-slide1" src="/1.webp" alt=""  />
                                     <button data-filter className="our-tech__btn1">
-                                        <img src="/our-tech-btn.svg" alt="btn"  />
+                                        <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
                                     </button>
                                 </div>
                                 <div className="our-tech__slider-item swiper-slide">
                                     <img className="our-tech-slide2" src="/2.webp" alt=""  />
                                     <button data-filter className="our-tech__btn2">
-                                        <img src="/our-tech-btn.svg" alt="btn"  />
+                                        <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
                                     </button>
                                 </div>
                             </div>
@@ -143,48 +137,27 @@ export default function Home() {
                         <div className="delivery__content">
                             <h2 className="title delivery__title">ДОСТАВКА</h2>
                             <div className="delivery__content-bg">
-                                <img src="/vector-map.webp"  alt="" />
+                                <Image width="29" height="29" src="/vector-map.webp"  alt="" />
                             </div>
                             <div className="delivery__content-block">
                                 <div className="delivery__item">
-                                    <img src="/dot-elem.svg" alt="icon"  />
+                                    <Image width="29" height="29" src="/dot-elem.svg" alt="icon"  />
                                     <p className="delivery__text">Доставка осуществляется в любой регион России</p>
                                 </div>
                                 <div className="delivery__item">
-                                    <img src="/dot-elem.svg" alt="icon"   />
+                                    <Image width="29" height="29" src="/dot-elem.svg" alt="icon"   />
                                     <p className="delivery__text">До грузового терминала транспортной компании продукция доставляется бесплатно</p>
                                 </div>
                                 <div className="delivery__item">
-                                    <img src="/dot-elem.svg" alt="icon"   />
+                                    <Image width="29" height="29" src="/dot-elem.svg" alt="icon"   />
                                     <p className="delivery__text">В дальнейшем клиент оплачивает услуги транспортной компании по действующим тарифам</p>
                                 </div>
                             </div>
                         </div>
                         <div className="delivery__form">
-                            <p className="delivery__form-title">Подберем технику за 15 минут</p>
-                            <p className="delivery__form-subtitle">Оставьте свой номер, и мы перезвоним вам</p>
-                            <form action="/">
-                                <div className="delivery__form-item">
-                                    <input className="delivery__form-input" type="text" name="phone" placeholder="Ваш номер телефона" />
-                                </div>
-                                <div className="delivery__form-item">
-                                    <input className="delivery__form-input" type="text" name="name" placeholder="Ваше имя"></input>
-                                </div>
-                                <div className="delivery__form-item">
-                                    <button className="delivery__form-btn" type="submit">Отправить</button>
-                                </div>
-                                <div className="delivery__form-item">
-                                    <div className="delivery__form-checkbox">
-                                        <input id="formAgreement" checked type="checkbox" name="agreement" className="delivery__checkbox-input"></input>
-                                        <label htmlFor="formAgreement" className="delivery__checkbox-label">
-                                            <span>
-                                                Я даю свое согласие на обработку персональных данных 
-                                                и соглашаюсь с условиями и политикой конфиденциальности
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </form>
+                        <p className="delivery__form-title">Подберем технику за 15 минут</p>
+                        <p className="delivery__form-subtitle">Оставьте свой номер, и мы перезвоним вам</p>
+                        <SearchVehicleForm delivery />
                         </div>
                     </div>
                 </div>
@@ -209,26 +182,26 @@ export default function Home() {
                 <div className="container">
                     <div className="lizing__wrapper">
                         <div className="lizing__image">
-                            <img src="/lizing-img.webp" alt="Лизинг"   />
+                            <Image width="1000" height="600" objectFit='cover' src="/lizing-img.webp" alt="Лизинг"   />
                         </div>
                         <div className="lizing__content">
                             <h2 className="title lizing__title">Лизинг</h2>
                             <div className="lizing__items">
                                 <div className="lizing__item">
-                                    <img src="/dot-elem.svg" alt="icon"    />
+                                    <Image objectFit='contain' width="29" height="29" src="/dot-elem.svg" alt="icon"    />
                                     <p className="lizing__text">
                                         Наша Компания сотрудничает с ведущими поставщиками и производителями специальной техники и оборудования, что даёт нашим клиентам возможность приобрести в лизинг спецтехнику на максимально выгодных условиях.
                                     </p>
                                 </div>
                                 <div className="lizing__item">
-                                    <img src="/dot-elem.svg" alt="icon"    />
+                                    <Image objectFit='contain' width="29" height="29" src="/dot-elem.svg" alt="icon"    />
                                     <p className="lizing__text">
                                         Лизинг позволяет юридическим лицам абсолютно легально оптимизировать налогообложение, относя лизинговые платежи 
                                         на затраты, что намного уменьшает налогооблагаемую прибыль.
                                     </p>
                                 </div>
                                 <div className="lizing__item">
-                                    <img src="/dot-elem.svg" alt="Лизинг"   />
+                                    <Image objectFit='contain' width="29" height="29" src="/dot-elem.svg" alt="Лизинг"   />
                                     <p className="lizing__text">
                                         В момент окончания срока действия договора имущество, переданное в лизинг переходит в собственность клиента 
                                         по остаточной (выкупной) стоимости.
@@ -248,22 +221,22 @@ export default function Home() {
                 <div className="partners__slider">
                     <div className="swiper-wrapper partners__wrapper">
                         <div className="partners__item swiper-slide">
-                            <img src="/partners/sber-lizing.webp" alt="Сбер лизинг"    />
+                            <Image objectFit='contain' width="180" height="40" src="/partners/sber-lizing.webp" alt="Сбер лизинг"    />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="/partners/alfa-lizing.webp" alt=""  />
+                            <Image objectFit='contain' width="180" height="40"  src="/partners/alfa-lizing.webp" alt=""  />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="/partners/balt-lizing.webp" alt=""  />
+                            <Image objectFit='contain' width="180" height="40"  src="/partners/balt-lizing.webp" alt=""  />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="/partners/europlan.webp" alt=""  />
+                            <Image objectFit='contain' width="180" height="40"  src="/partners/europlan.webp" alt=""  />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="/partners/peco.webp" alt=""  />
+                            <Image objectFit='contain' width="180" height="40" src="/partners/peco.webp" alt=""  />
                         </div>
                         <div className="partners__item swiper-slide">
-                            <img src="/partners/sovkombank.webp" alt=""  />
+                            <Image objectFit='contain' width="180" height="40"  src="/partners/sovkombank.webp" alt=""  />
                         </div>
                     </div>
                 </div>
@@ -291,7 +264,7 @@ export default function Home() {
                                  
                                     <div className="news__item swiper-slide">
                                         <div className="news__item-img">
-                                            <img src="/news/img-2.webp" alt=""  />
+                                            <Image objectFit='cover' width="400px" height="226px" src="/news/img-2.webp" alt=""  />
                                         </div>
                                         <p className="news__item-date">17.02.2022</p>
                                         <p className="news__item-title">Новая техника на складе</p>
@@ -316,38 +289,16 @@ export default function Home() {
                         <div className="map__form map__form">
                             <p className="map__form-title">Подберем технику за 15 минут</p>
                             <p className="map__form-subtitle">Оставьте свой номер, и мы перезвоним вам</p>
-                            <form action="/">
-                                <div className="map__form-item">
-                                    <input className="map__form-input" type="text" name="phone" placeholder="Ваш номер телефона"></input>
-                                </div>
-                                <div className="map__form-item">
-                                    <input className="map__form-input" type="text" name="name" placeholder="Ваше имя"></input>
-                                </div>
-                                <div className="map__form-item">
-                                    <button className="map__form-btn" type="submit">Отправить</button>
-                                </div>
-                                <div className="map__form-item">
-                                    <div className="map__form-checkbox">
-                                        <input id="map-formAgreement" checked type="checkbox" name="agreement" className="map__checkbox-input"></input>
-                                        <label htmlFor="map-formAgreement" className="map__checkbox-label">
-                                            <span>
-                                                Я даю свое согласие на обработку персональных данных 
-                                                и соглашаюсь с условиями и политикой конфиденциальности
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </form>
+                            <SearchVehicleForm />
                         </div>
                        <a href="https://yandex.uz/maps/213/moscow/house/likhoborskaya_naberezhnaya_3s9/Z04YcwVhQUICQFtvfXR0dXxrZg==/?ll=37.520370%2C55.853907&z=17.54"  id="map-block" className="map__block">
                          </a>
                     </div>
                 </div>
             </div>
-        </main>
 
      
-        <div className="modal">
+        {/* <div className="modal">
             <div className="modal__dialog">
                 <div className="modal__content">
                     <div data-close className="modal__close">
@@ -363,7 +314,7 @@ export default function Home() {
                         <input required placeholder="Ваше имя" name="name" type="text" className="modal__input"></input> 
                         <button type="submit" className="modal__btn">Отправить</button>
                         <div className="modal__checkbox">
-                            <input id="modal-formAgreement" checked type="checkbox" name="agreement" className="modal__checkbox-input">
+                            <input id="modal-formAgreement" onChange={() => ""} type="checkbox" name="agreement" className="modal__checkbox-input">
 							</input> 
                             <label htmlFor="modal-formAgreement" className="modal__checkbox-label">
                                 <span>
@@ -391,9 +342,9 @@ export default function Home() {
                    <Link href="/#" className="thanks__link"><a>Главная страница </a></Link>
                 </div>
             </div>
-        </div>
+        </div> */}
 
-        <div className="filter">
+        {/* <div className="filter">
             <div className="filter__dialog">
                 <div className="filter__content">
                     <div data-closee className="filter__close">
@@ -407,7 +358,7 @@ export default function Home() {
                             <p className="filter__manufacturer-title">Производитель</p>
                             <div className="filter__manufacturer-content">
                                 <div className="filter__manufacturer-item">
-                                    <input name="manufacturer" id="manufacturer-all" checked className="filter__radio" type="radio"></input> 
+                                    <input name="manufacturer" id="manufacturer-all" className="filter__radio" type="radio"></input> 
                                     <label className="filter__label" htmlFor="manufacturer-all">Все</label>
                                 </div>
                                 <div className="filter__manufacturer-item">
@@ -477,7 +428,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
+
     </div>
   )
 }
