@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { Navigation, Pagination } from 'swiper';
+import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
@@ -27,7 +27,7 @@ export const News = () => {
                     <div className="news__slider">
                         <div className="swiper-wrapper">
                          <Swiper
-                            modules={[Navigation, Pagination]}      
+                            modules={[Navigation]}      
                             slidesPerView={2}
                             navigation={{
                                 nextEl: ".news__slider-next",

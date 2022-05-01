@@ -1,3 +1,6 @@
+import { Navigation } from "swiper"
+import {Swiper} from "swiper/react"
+import { SwiperSlide } from "swiper/react"
 import { SearchVehicleForm } from "../components/SearchVehicleForm"
 
 const Company = () => {
@@ -152,18 +155,35 @@ const Company = () => {
                         </div>
                         <div className="sertificats__slider">
                             <div className="swiper-wrapper sertificats__slider-wrapper">
-                                <div className="sertificats__slider-item swiper-slide">
-                                    <img src="/company/sertificats-1.webp" alt="" />
-                                </div>
-                                <div className="sertificats__slider-item swiper-slide">
-                                    <img src="/company/sertificats-2.webp" alt="" />
-                                </div>
-                                <div className="sertificats__slider-item swiper-slide">
-                                    <img src="/company/sertificats-3.webp" alt="" />
-                                </div>
-                                <div className="sertificats__slider-item swiper-slide">
-                                    <img src="/company/sertificats-3.webp" alt="" />
-                                </div>
+                                <Swiper modules={[Navigation]} slidesPerView={2} 
+                                    navigation={
+                                        {
+                                            prevEl: ".sertificats__slider-prev",
+                                            nextEl: ".sertificats__slider-next"
+                                        }
+                                    }
+                                >
+                                    <SwiperSlide>
+                                        <div className="sertificats__slider-item swiper-slide">
+                                            <img src="/company/sertificats-1.webp" alt="" />
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide>
+                                        <div className="sertificats__slider-item swiper-slide">
+                                            <img src="/company/sertificats-2.webp" alt="" />
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide>
+                                        <div className="sertificats__slider-item swiper-slide">
+                                            <img src="/company/sertificats-3.webp" alt="" />
+                                        </div>
+                                    </SwiperSlide>
+                                    <SwiperSlide>
+                                        <div className="sertificats__slider-item swiper-slide">
+                                            <img src="/company/sertificats-3.webp" alt="" />
+                                        </div>
+                                    </SwiperSlide>
+                                </Swiper>
                             </div>
                             <div className="sertificats__pagination"></div>
                         </div>

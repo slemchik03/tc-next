@@ -1,10 +1,16 @@
 import Image from "next/image"
-
-import { Navigation, Pagination } from 'swiper';
+import { useState } from "react";
+import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { GoodsFilterModal } from "./GoodsFilterModal";
 
 
 export const OurTech = () => {
+    const [isModalShow, setModalShowStatus] = useState(false)
+
+    const clickHandler = () => {
+        setModalShowStatus(true)
+    }
 
     return (
         <section id="our-tech" className="our-tech">
@@ -28,7 +34,7 @@ export const OurTech = () => {
                 <div className="our-tech__slider">
                 <Swiper 
                      style={{height: "750px"}}
-                     modules={[Navigation, Pagination]}  
+                     modules={[Navigation]}  
                      slidesPerView={1}
                      navigation={{
                          nextEl: ".our-tech__next",
@@ -39,7 +45,7 @@ export const OurTech = () => {
                         <div className="our-tech__slider-item ">
                             <img  className="our-tech-slide3" src="/3.webp" alt=""  />
                             <button data-filter className="our-tech__btn3">
-                                    <Image objectFit='cover'  width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"   />
+                                    <Image onClick={clickHandler} objectFit='cover'  width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"   />
                             </button>
                         </div>
                     </SwiperSlide>
@@ -47,7 +53,7 @@ export const OurTech = () => {
                         <div className="our-tech__slider-item">
                             <img className="our-tech-slide1" src="/1.webp" alt=""  />
                             <button data-filter className="our-tech__btn1">
-                                <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
+                                <Image onClick={clickHandler} objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
                             </button>
                         </div>
                  </SwiperSlide>
@@ -55,7 +61,7 @@ export const OurTech = () => {
                     <div className="our-tech__slider-item">
                     <img className="our-tech-slide1" src="/1.webp" alt=""  />
                         <button data-filter className="our-tech__btn1">
-                            <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
+                            <Image onClick={clickHandler} objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
                         </button>
                     </div>
                 </SwiperSlide>
@@ -63,16 +69,16 @@ export const OurTech = () => {
                     <div className="our-tech__slider-item ">
                         <img className="our-tech-slide2" src="/2.webp" alt=""  />
                         <button data-filter className="our-tech__btn2">
-                            <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
+                            <Image onClick={clickHandler} objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
                         </button>
                     </div>
                 </SwiperSlide>       
                 </Swiper>
                                     
-
                 </div>
             </div>
         </div>
+        <GoodsFilterModal isOpen={isModalShow} closeModal={() => setModalShowStatus(false)} />
     </section>
     )
 }
