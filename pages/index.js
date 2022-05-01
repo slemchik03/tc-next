@@ -1,5 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Lizing } from '../components/Lizing'
+import { News } from '../components/News'
+import { OurTech } from '../components/OurTech'
 import { SearchVehicleForm } from '../components/SearchVehicleForm'
 
 export default function Home() {
@@ -85,49 +88,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id="our-tech" className="our-tech">
-                <div className="container">
-                    <div className="our-tech__wrapper">
-                        <div className="our-tech__content">
-                            <h2 className="title">Наша техника</h2>
-                            <div className="our-tech__slider-btns">
-                                <div className="our-tech__prev">
-                                    <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M31 11.5H1M1 11.5L13.1875 22M1 11.5L13.1875 1" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div className="our-tech__next">
-                                    <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 11.5H31M31 11.5L18.8125 1M31 11.5L18.8125 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>                                            
-                                </div>
-                            </div>
-                        </div>
-                        <div className="our-tech__slider">
-                            <div className="swiper-wrapper">
-                                <div className="our-tech__slider-item swiper-slide">
-                                    <img  className="our-tech-slide3" src="/3.webp" alt=""  />
-                                    <button data-filter className="our-tech__btn3">
-                                        <Image objectFit='cover'  width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"   />
-                                    </button>
-                                </div>
-                                <div className="our-tech__slider-item swiper-slide">
-                                    <img className="our-tech-slide1" src="/1.webp" alt=""  />
-                                    <button data-filter className="our-tech__btn1">
-                                        <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
-                                    </button>
-                                </div>
-                                <div className="our-tech__slider-item swiper-slide">
-                                    <img className="our-tech-slide2" src="/2.webp" alt=""  />
-                                    <button data-filter className="our-tech__btn2">
-                                        <Image objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <OurTech />
 
             <section id="delivery" className="delivery">
                 <div className="container">
@@ -176,110 +137,34 @@ export default function Home() {
                 </div>
             </div>
 
-            <section id="lizing" className="lizing">
-                <div className="container">
-                    <div className="lizing__wrapper">
-                        <div className="lizing__image">
-                            <Image width="1000" height="600" objectFit='cover' src="/lizing-img.webp" alt="Лизинг"   />
-                        </div>
-                        <div className="lizing__content">
-                            <h2 className="title lizing__title">Лизинг</h2>
-                            <div className="lizing__items">
-                                <div className="lizing__item">
-                                    <Image objectFit='contain' width="29" height="29" src="/dot-elem.svg" alt="icon"    />
-                                    <p className="lizing__text">
-                                        Наша Компания сотрудничает с ведущими поставщиками и производителями специальной техники и оборудования, что даёт нашим клиентам возможность приобрести в лизинг спецтехнику на максимально выгодных условиях.
-                                    </p>
-                                </div>
-                                <div className="lizing__item">
-                                    <Image objectFit='contain' width="29" height="29" src="/dot-elem.svg" alt="icon"    />
-                                    <p className="lizing__text">
-                                        Лизинг позволяет юридическим лицам абсолютно легально оптимизировать налогообложение, относя лизинговые платежи 
-                                        на затраты, что намного уменьшает налогооблагаемую прибыль.
-                                    </p>
-                                </div>
-                                <div className="lizing__item">
-                                    <Image objectFit='contain' width="29" height="29" src="/dot-elem.svg" alt="Лизинг"   />
-                                    <p className="lizing__text">
-                                        В момент окончания срока действия договора имущество, переданное в лизинг переходит в собственность клиента 
-                                        по остаточной (выкупной) стоимости.
-                                    </p>
-                                </div>
-                            </div>
-                            <p className="lizing__info">
-                                Если Вас интересует приобретение в лизинг, оставьте заявку и мы Вам перезвоним для уточнения подробностей.
-                            </p>
-                            <button className="lizing__btn" data-modal>Оставить заявку</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Lizing />
 
             <div className="partners">
                 <div className="partners__slider">
-                    <div className="swiper-wrapper partners__wrapper">
-                        <div className="partners__item swiper-slide">
+                    <div className="partners__wrapper">
+                        <div className="partners__item">
                             <Image objectFit='contain' width="180" height="40" src="/partners/sber-lizing.webp" alt="Сбер лизинг"    />
                         </div>
-                        <div className="partners__item swiper-slide">
+                        <div className="partners__item">
                             <Image objectFit='contain' width="180" height="40"  src="/partners/alfa-lizing.webp" alt=""  />
                         </div>
-                        <div className="partners__item swiper-slide">
+                        <div className="partners__item ">
                             <Image objectFit='contain' width="180" height="40"  src="/partners/balt-lizing.webp" alt=""  />
                         </div>
-                        <div className="partners__item swiper-slide">
+                        <div className="partners__item">
                             <Image objectFit='contain' width="180" height="40"  src="/partners/europlan.webp" alt=""  />
                         </div>
-                        <div className="partners__item swiper-slide">
+                        <div className="partners__item ">
                             <Image objectFit='contain' width="180" height="40" src="/partners/peco.webp" alt=""  />
                         </div>
-                        <div className="partners__item swiper-slide">
+                        <div className="partners__item ">
                             <Image objectFit='contain' width="180" height="40"  src="/partners/sovkombank.webp" alt=""  />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <section className="news">
-                <div className="container">
-                    <div className="news__wrapper">
-                        <h2 className="title">НОВОСТИ КОМПАНИИ</h2>
-                        <div className="news__slider-btns">
-                            <div className="news__slider-prev">
-                                <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M31 11.5H1M1 11.5L13.1875 22M1 11.5L13.1875 1" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </div>
-                            <div className="news__slider-next">
-                                <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 11.5H31M31 11.5L18.8125 1M31 11.5L18.8125 22" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>                                            
-                            </div>
-                        </div>
-                        <div className="news__inner">
-                            <div className="news__slider">
-                                <div className="swiper-wrapper">
-                                 
-                                    <div className="news__item swiper-slide">
-                                        <div className="news__item-img">
-                                            <Image objectFit='cover' width="400px" height="226px" src="/news/img-2.webp" alt=""  />
-                                        </div>
-                                        <p className="news__item-date">17.02.2022</p>
-                                        <p className="news__item-title">Новая техника на складе</p>
-                                        <p className="news__item-text">
-                                            На склад Warehouse automation поступила большая партия складской техники EP.
-                                            Среди представленных к продаже моделей – новые погрузчики. На склад Warehouse automation поступила большая партия складской техники EP
-                                        </p>
-                                       <Link href="/news/new-teknik" className="news__item-link"><a>Читать полностью </a></Link>
-                                    </div>
-                                </div>
-                                <div className="swiper-scrollbar"></div>
-                            </div>
-                        </div>
-                       <Link href="/news" className="news__link"><a>Читать все новости </a></Link>
-                    </div>
-                </div>
-            </section>
+            <News />
 
             <div className="map">
                 <div className="container">

@@ -4,7 +4,7 @@ import { OrderCallModal } from "./OrderCallModal"
 
 
 export const Header = () => {
-    const [isShowModal, setShowModal] = useState(false)
+    const [isModalShow, setModalShowStatus] = useState(false)
 
     return (
         <header className="header">
@@ -47,8 +47,8 @@ export const Header = () => {
                     </div>
                     <a href="tel:+74951667733" className="header__telephone-number">+7 (495) 166-77-33</a>
                 </div>
-                <div onClick={() => setShowModal(true)} className="header__btn" data-modal>Заказать звонок</div>
-                <OrderCallModal isOpen={isShowModal} closeModal={() => setShowModal(false)}/> {/*не влияет на вёрстку, это модальное окно которое будет отбражатся при клике на .header__btn */}
+                <div onClick={() => setModalShowStatus(true)} className="header__btn" data-modal>Заказать звонок</div>
+                <OrderCallModal isOpen={isModalShow} closeModal={() => setModalShowStatus(false)}/> {/*не влияет на вёрстку, это модальное окно которое будет отбражатся при клике на .header__btn */}
             </div>
             <nav className="nav">
                 <ul className="nav__menu">

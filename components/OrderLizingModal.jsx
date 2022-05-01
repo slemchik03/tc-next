@@ -1,11 +1,11 @@
+import {useForm} from "react-hook-form"
 import ReactModal from "react-modal"
 import defaultModalStyles from "../utils/defaultModalStyles"
-import {useForm} from "react-hook-form"
 
-ReactModal.setAppElement("body")
 
-export const OrderCallModal = ({isOpen, closeModal}) => {
+export const OrderLizingModal = ({isOpen, closeModal}) => {
     const {register, handleSubmit, reset} = useForm()
+
 
     const submitHandler = async (data) => {
         const response = await axios.get(`https://trade-group.su/mail?name=${data["name"]}&tel=${data["phone"]}`)
@@ -13,7 +13,6 @@ export const OrderCallModal = ({isOpen, closeModal}) => {
         closeModal(true)
         reset()
      }
-
 
     return (
         <ReactModal style={defaultModalStyles} isOpen={isOpen}>
@@ -26,13 +25,14 @@ export const OrderCallModal = ({isOpen, closeModal}) => {
                             </svg>                                
                         </div>
                         <form onSubmit={handleSubmit(submitHandler)} id="form">
-                            <div className="modal__title">ЗАКАЗАТЬ ЗВОНОК</div>
+                            <div className="modal__title">ЗАКАЗАТЬ ЛИЗИНГ</div>
                             <div className="modal__subtitle">Оставьте свой номер, и мы перезвоним вам</div>
                             <input {...register("phone", {required: true})} placeholder="Ваш номер телефона" name="phone" type="text" className="modal__input"></input> 
-                            <input {...register("name", {required: true})} placeholder="Ваше имя" name="name" type="text" className="modal__input"></input> 
-                            <button type="submit" className="modal__btn">Отправить</button>
+                            <input style={{marginTop: "5px"}} {...register("name", {required: true})} placeholder="Ваше имя" name="name" type="text" className="modal__input"></input>
+                            <input {...register("message", {required: true})} placeholder="Какую технику вы хотите" name="message" type="text" className="modal__input"></input>
+                            <button type="submit" className="modal__btn">Сделать заказ.</button>
                             <div className="modal__checkbox">
-                                <input id="modal-formAgreement" onChange={() => ""} checked type="checkbox" name="agreement" className="modal__checkbox-input">
+                                <input id="modal-formAgreement" onChange={() => ""} type="checkbox" name="agreement" className="modal__checkbox-input">
                                 </input> 
                                 <label htmlFor="modal-formAgreement" className="modal__checkbox-label">
                                     <span>
@@ -45,6 +45,6 @@ export const OrderCallModal = ({isOpen, closeModal}) => {
                     </div>   
                 </div>
         </ReactModal>
-       
+            
     )
 }
