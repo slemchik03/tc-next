@@ -1,10 +1,11 @@
-import Modal from "react-modal/lib/components/Modal"
+import ReactModal from "react-modal"
+import defaultModalStyles from "../utils/defaultModalStyles"
 
-Modal.setAppElement(".main")
+ReactModal.setAppElement("body")
 
-export const ThanksDialog = ({isOpen, closeModal}) => {
+export const ThanksModal = ({isOpen, closeModal}) => {
     return (
-        <Modal style={{overlay: { position: "static"}} /* disable default styles */} isOpen={isOpen}>
+        <ReactModal style={defaultModalStyles} isOpen={isOpen}>
             <div className="thanks">
             <div className="thanks__dialog">
                 <div className="thanks__content">
@@ -20,7 +21,7 @@ export const ThanksDialog = ({isOpen, closeModal}) => {
                 </div>
             </div>
         </div>
-        </Modal>
+        </ReactModal>
 
     )
 }

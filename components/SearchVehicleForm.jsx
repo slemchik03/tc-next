@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { ThanksDialog } from "./ThanksDialog"
+import { ThanksModal } from "./ThanksModal"
 
 
 export const SearchVehicleForm = ({delivery}) => {
@@ -38,7 +38,7 @@ export const SearchVehicleForm = ({delivery}) => {
                         </label>
                 </div>
                 </div>
-                <ThanksDialog isOpen={isModalShow} closeModal={() => setModalShowStatus(false)}/>
+                <ThanksModal isOpen={isModalShow} closeModal={() => setModalShowStatus(false)}/>
             </form> 
         )
     }
@@ -65,7 +65,7 @@ export const SearchVehicleForm = ({delivery}) => {
                             </label>
                         </div>
                     </div>
-                    <ThanksDialog isOpen={isModalShow} closeModal={() => setModalShowStatus(false)}/>
+                    <ThanksModal isOpen={isModalShow} closeModal={() => setModalShowStatus(false)}/>
             </form>   
     )
 }

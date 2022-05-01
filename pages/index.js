@@ -12,7 +12,6 @@ export default function Home() {
                         <div className="intro__left">
                             <h1>Вилочные погрузчики и техника <span>для склада с доставкой по России</span></h1>
                             <div className="intro__btns">
-                               <Link href="/catalog" className="intro__link"><a>Перейти в каталог </a></Link>
                                 <button className="intro__btn">Задать вопрос менеджеру</button>
                             </div>
                             <div className="intro__statistic">
@@ -91,7 +90,6 @@ export default function Home() {
                     <div className="our-tech__wrapper">
                         <div className="our-tech__content">
                             <h2 className="title">Наша техника</h2>
-                           <Link href="/catalog" className="our-tech__link"><a> Перейти в каталог </a></Link>
                             <div className="our-tech__slider-btns">
                                 <div className="our-tech__prev">
                                     <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -297,52 +295,9 @@ export default function Home() {
                 </div>
             </div>
 
-     
-        {/* <div className="modal">
-            <div className="modal__dialog">
-                <div className="modal__content">
-                    <div data-close className="modal__close">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0.254395" y="16.1326" width="22.8149" height="2.28149" rx="1" transform="rotate(-45 0.254395 16.1326)" fill="#DF0000"/>
-                            <rect width="22.8149" height="2.28149" rx="1" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 17.7458 16.1326)" fill="#DF0000"/>
-                        </svg>                                
-                    </div>
-                    <form id="form">
-                        <div className="modal__title">ЗАКАЗАТЬ ЗВОНОК</div>
-                        <div className="modal__subtitle">Оставьте свой номер, и мы перезвоним вам</div>
-                        <input required placeholder="Ваш номер телефона" name="phone" type="text" className="modal__input"></input> 
-                        <input required placeholder="Ваше имя" name="name" type="text" className="modal__input"></input> 
-                        <button type="submit" className="modal__btn">Отправить</button>
-                        <div className="modal__checkbox">
-                            <input id="modal-formAgreement" onChange={() => ""} type="checkbox" name="agreement" className="modal__checkbox-input">
-							</input> 
-                            <label htmlFor="modal-formAgreement" className="modal__checkbox-label">
-                                <span>
-                                    Я даю свое согласие на обработку персональных данных 
-                                    и соглашаюсь с условиями и политикой конфиденциальности
-                                </span>
-                            </label>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        {
+            /*
 
-        <div className="thanks">
-            <div className="thanks__dialog">
-                <div className="thanks__content">
-                    <div data-close className="thanks__close">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0.254395" y="16.1326" width="22.8149" height="2.28149" rx="1" transform="rotate(-45 0.254395 16.1326)" fill="#DF0000"/>
-                            <rect width="22.8149" height="2.28149" rx="1" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 17.7458 16.1326)" fill="#DF0000"/>
-                        </svg>                                
-                    </div>
-                    <div className="thanks__title"><span>Спасибо.</span> <br /> Заявка отправлена!</div>
-                    <div className="thanks__subtitle">Наш менеджер получил Вашу заявку и скоро свяжется с Вами.</div>
-                   <Link href="/#" className="thanks__link"><a>Главная страница </a></Link>
-                </div>
-            </div>
-        </div> */}
 
         {/* <div className="filter">
             <div className="filter__dialog">
