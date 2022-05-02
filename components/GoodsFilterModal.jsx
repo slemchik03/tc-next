@@ -1,12 +1,18 @@
 import ReactModal from "react-modal"
 import defaultModalStyles from "../utils/defaultModalStyles"
 import {useForm} from "react-hook-form"
+import { useRouter } from "next/router"
 
 ReactModal.setAppElement("body")
 
 
 export const GoodsFilterModal = ({isOpen, closeModal}) => {
     const {register, handleSubmit, reset} = useForm()
+    const router = useRouter()
+
+    const submitHandler = data => {
+        router.push("/catalog?categories=2&page=1")
+    }
 
     return (
         <ReactModal isOpen={isOpen} style={{...defaultModalStyles}}>
@@ -19,7 +25,7 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <rect width="22.8149" height="2.28149" rx="1" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 17.7458 16.1326)" fill="#DF0000"/>
                         </svg>             
                     </div>
-                    <form onSubmit={handleSubmit(() => "")} className="filter__form">
+                    <form onSubmit={handleSubmit(submitHandler)} className="filter__form">
                         <div className="filter__manufacturer">
                             <p className="filter__manufacturer-title">Производитель</p>
                             <div className="filter__manufacturer-content">

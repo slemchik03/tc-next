@@ -1,8 +1,10 @@
 import axios from "axios"
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { CatalogFilters } from "../components/CatalogFilter/CatalogFilters";
+import { CatalogPaginate } from "../components/CatalogPaginate";
 
-export default function Catalog({goods}) {
+export default function Catalog({goods, pageCount, currentPage, category, filters}) {
     const router = useRouter()
     return (
       <div>
@@ -35,64 +37,7 @@ export default function Catalog({goods}) {
   <div className="cat-filter">
       <div className="container">
           <div className="cat-filter__content">
-              <form className="cat-filter__form">
-                  <div className="cat-filter__inner">
-
-
-                      <div className="cat-filter__engine">
-                          <p className="cat-filter__engine-title">Тип двигателя</p>
-                          <div className="cat-filter__engine-content">
-                              <div className="cat-filter__engine-item">
-                                  <input name="cat-engine" id="cat-engine-petrol-gas" className="cat-filter__radio" type="radio" />
-                                  <label className="cat-filter__label" htmlFor="cat-engine-petrol-gas">Бензин / газ</label>
-                              </div>
-                              <div className="cat-filter__engine-item">
-                                  <input name="cat-engine" id="cat-engine-dizel" className="cat-filter__radio" type="radio" />
-                                  <label className="cat-filter__label" htmlFor="cat-engine-dizel">Дизельный</label>
-                              </div>
-                              <div className="cat-filter__engine-item">
-                                  <input name="cat-engine" id="cat-engine-electric" className="cat-filter__radio" type="radio" />
-                                  <label className="cat-filter__label" htmlFor="cat-engine-electric">Электрический</label>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div className="cat-filter__loadcapacity">
-                          <p className="cat-filter__loadcapacity-title">Грузоподъемность</p>
-                          <div className="cat-filter__loadcapacity-slider" id="cat-loadcapacity-range-slier"></div>
-                          <div className="cat-filter__loadcapacity-inputs">
-                              <label className="cat-filter__loadcapacity-label">
-                                  <span className="cat-filter__loadcapacity-label-text">От</span>
-                                  <input type="number" min="1000" max="48000" placeholder="1000" className="cat-filter__loadcapacity-input" id="cat-loadcapacity-input-0" />
-                              </label>
-                              <label className="cat-filter__loadcapacity-label">
-                                  <span className="cat-filter__loadcapacity-label-text">До</span>
-                                  <input type="number" min="1000" max="48000" placeholder="48000" className="cat-filter__loadcapacity-input" id="cat-loadcapacity-input-1" />
-                              </label>
-                          </div>
-                      </div>
-
-                      <div className="cat-filter__liftingheight">
-                          <p className="cat-filter__liftingheight-title">Высота подъема</p>
-                          <div className="cat-filter__liftingheight-slider" id="cat-liftingheight-range-slier"></div>
-                          <div className="cat-filter__liftingheight-inputs">
-                              <label className="cat-filter__liftingheight-label">
-                                  <span className="cat-filter__liftingheight-label-text">От</span>
-                                  <input type="number" min="2" max="15200" placeholder="1000" className="cat-filter__liftingheight-input" id="cat-liftingheight-input-0" />
-                              </label>
-                              <label className="cat-filter__liftingheight-label">
-                                  <span className="cat-filter__liftingheight-label-text">До</span>
-                                  <input type="number" min="2" max="15200" placeholder="48000" className="cat-filter__liftingheight-input" id="cat-liftingheight-input-1" />
-                              </label>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div className="cat-filter__btns">
-                      <button className="cat-filter__show">Показать</button>
-                      <button className="cat-filter__reset">Сбросить фильтры</button>
-                  </div>
-              </form>
+                <CatalogFilters filters={filters}/>
           </div>
       </div>
   </div>
@@ -135,29 +80,15 @@ export default function Catalog({goods}) {
               }
             {
                 !goods.length && <div>Товары не найдены!</div>
+
             }
           </div>
-          <div className="cat-pagination">
-              <div className="cat-pagination__wrapper">
-                  <button className="cat-pagination__prev">
-                      <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.15991 1.41L3.57991 6L8.15991 10.59L6.74991 12L0.749912 6L6.74991 0L8.15991 1.41Z" fill="#202123"/>
-                      </svg>                                    
-                  </button>
-                  <ul className="cat-pagination__list">
-                      <li className="cat-pagination__list-item is-active"><a href="#">1</a></li>
-                      <li className="cat-pagination__list-item"><a href="#">2</a></li>
-                      <li className="cat-pagination__list-item"><a href="#">3</a></li>
-                      <li className="cat-pagination__list-item"><a href="#">4</a></li>
-                      <li className="cat-pagination__list-item"><a href="#">5</a></li>
-                  </ul>
-                  <button className="cat-pagination__next">
-                      <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0.840088 1.41L5.42009 6L0.840088 10.59L2.25009 12L8.25009 6L2.25009 0L0.840088 1.41Z" fill="#202123"/>
-                      </svg>                                    
-                  </button>
-              </div>
-          </div>
+
+            <CatalogPaginate 
+                pagesCount={pageCount} 
+                currentPage={currentPage} 
+                category={category}
+            />
       </div>
   </div>
       </div>
@@ -182,26 +113,39 @@ export async function getServerSideProps(context) {
         const page = !query?.page ? 1 : query.page // если пользователь не задал страницу ставим page=1
 
         // получаем список товаров
-        const response = (await axios.get(`https://trade-group.su/apicatalog?categories=${category}&page=${page}`)).data
+        const productsResponse = (await axios.get(`https://trade-group.su/apicatalog?categories=${category}&page=${page}`)).data
+        // получаем список категорий
+        const filtersResponse = (await axios.get(`https://trade-group.su/apicategories?parent=${category}&show_properties=1`)).data
+
+        const products = productsResponse["products"]
+        const pageCount = productsResponse["pages"]
 
         const goodsList = []
 
-        for (let i = 0; i < response.length; i++) { // ищем каждый товар по slug и добавляем в список товаров
-            const element = response[i]
+        for (let i = 0; i < products.length; i++) { // ищем каждый товар по slug и добавляем в список товаров
+            const element = products[i]
             const goodsItem = (await axios.get(`https://trade-group.su/apicatalog?slug=${element["slug"]}`)).data
             goodsList.push(...goodsItem)
         } 
         
+        const filters = filtersResponse.filter(item => item.is_filtered === "1")
 
         return {
             props: {
-                goods: goodsList
+                goods: goodsList,
+                pageCount,
+                currentPage: page,
+                category,
+                filters
             }
         }
     } catch (error) {
         return {
             props: {
                 goods: [],
+                pageCount: 0,
+                currentPage: 1,
+                category: "",
                 error: true
             }
         }
