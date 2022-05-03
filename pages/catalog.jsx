@@ -1,11 +1,21 @@
 import axios from "axios"
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { CatalogFilters } from "../components/CatalogFilter/CatalogFilters";
 import { CatalogPaginate } from "../components/CatalogPaginate";
+import { OrderCallModal } from "../components/OrderCallModal";
 
-export default function Catalog({goods, pageCount, currentPage, category, filters}) {
+export default function Catalog({goods, pageCount, currentPage, uri, filters}) {
     const router = useRouter()
+    const [selectedProduct, setSelectedProduct] = useState()
+    const [isModalShow, setModalShowStatus] = useState(false)
+
+    const orderProductClickHandler = (product) => {
+        setSelectedProduct(product)
+        setModalShowStatus(true)
+    }
+
     return (
       <div>
         <div className="requests">
@@ -61,9 +71,9 @@ export default function Catalog({goods, pageCount, currentPage, category, filter
                             element.properties.map((element, index) => {
                                 return (
                                     <div key={index} className="catalog__item-info-block">
-                                    <div className="catalog__item-info-right">{element["property"]}</div>
-                                    <div className="catalog__item-info-left">{element["value"]}</div>
-                                </div>
+                                        <div className="catalog__item-info-right">{element["property"]}</div>
+                                        <div className="catalog__item-info-left">{element["value"]}</div>
+                                    </div>
                                 )
                             }).slice(0,4) // обрезаем оставшеися свойства
                         }
@@ -71,7 +81,7 @@ export default function Catalog({goods, pageCount, currentPage, category, filter
                         </div>
                         <div className="catalog__item-btns">
                             <a onClick={() => router.push("/catalog/" + element.slug)} href="#" className="catalog__item-more-btn">Подробнее</a>
-                            <button className="catalog__item-btn" data-modal>Оставить заявку</button>
+                            <button onClick={() => orderProductClickHandler(element)} className="catalog__item-btn" data-modal>Оставить заявку</button>
                         </div>
                     </div>
                       )
@@ -87,8 +97,9 @@ export default function Catalog({goods, pageCount, currentPage, category, filter
             <CatalogPaginate 
                 pagesCount={pageCount} 
                 currentPage={currentPage} 
-                category={category}
+                uri={uri}
             />
+            <OrderCallModal closeModal={() => setModalShowStatus(false)} isOpen={isModalShow} productName={selectedProduct?.name}/>
       </div>
   </div>
       </div>
@@ -99,24 +110,33 @@ export async function getServerSideProps(context) {
     try {
         const {query} = context
 
-        if (!query?.categories) {// если пользователь задал не категорию  
+        if (!query["categories"]) {// если пользователь задал не категорию  
                                 // переадресовать его на страницу с любой категорией, например 2
             return {              
                 redirect: {
                     permanent: false,
-                    destination: "/catalog?categories=2&page=1",
+                    destination: "/catalog?categories=2&page=0",
                 }
             }
         }
+        // Получаем все параметры с url
+        const category = query["categories"]
+        const page = !query["page"] ? 1 : query["page"] // если пользователь не задал страницу ставим page=1
 
-        const category = query.categories
-        const page = !query?.page ? 1 : query.page // если пользователь не задал страницу ставим page=1
+        const loadCapacityStart = +query["loadCapacityStart"] ? +query["loadCapacityStart"] : 0 // мин грузоподъемность
+        const loadCapacityEnd = +query["loadCapacityEnd"] ? +query["loadCapacityStart"] : 48000 // макс грузоподъемность
+
+        const engineType = query["engine"] ? query["engine"] : "Дизельный" // тип двигателя. по умолчанию дизель
+
+        const manufacturerType = query["manufacture"] ? query["manufacture"] : "Все" // тип производителя 
+        
 
         // получаем список товаров
-        const productsResponse = (await axios.get(`https://trade-group.su/apicatalog?categories=${category}&page=${page}`)).data
+        const productsURI = encodeURI(`https://trade-group.su/apicatalog?categories=${category}&filters[]=13;in;${engineType}&filters[]=3;between;${loadCapacityStart};${loadCapacityEnd}&page=${page}`)
+        const productsResponse = (await axios.get(productsURI)).data
         // получаем список категорий
         const filtersResponse = (await axios.get(`https://trade-group.su/apicategories?parent=${category}&show_properties=1`)).data
-
+       
         const products = productsResponse["products"]
         const pageCount = productsResponse["pages"]
 
@@ -127,7 +147,7 @@ export async function getServerSideProps(context) {
             const goodsItem = (await axios.get(`https://trade-group.su/apicatalog?slug=${element["slug"]}`)).data
             goodsList.push(...goodsItem)
         } 
-        
+
         const filters = filtersResponse.filter(item => item.is_filtered === "1")
 
         return {
@@ -135,8 +155,8 @@ export async function getServerSideProps(context) {
                 goods: goodsList,
                 pageCount,
                 currentPage: page,
-                category,
-                filters
+                uri: context.resolvedUrl,
+                filters,
             }
         }
     } catch (error) {
@@ -146,7 +166,7 @@ export async function getServerSideProps(context) {
                 pageCount: 0,
                 currentPage: 1,
                 category: "",
-                error: true
+                error: error + ""
             }
         }
     }

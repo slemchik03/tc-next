@@ -1,33 +1,47 @@
 import { useRouter } from "next/router"
-import {  useState } from "react"
 
 
 const repeat = (n, callback) => {
     const res = []
-    for (let i = 0; i < n - 1; i++) {
+    for (let i = 0; i < n; i++) {
         res.push(callback(i))
     }
     return res
 }
 
-export const CatalogPaginate = ({pagesCount, currentPage, category}) => {
+export const CatalogPaginate = ({pagesCount, currentPage, uri}) => {
     const router = useRouter()
 
     const clickBtnPrevHandler = () => {
-        if (currentPage - 1 > 0) {
-            router.push(`/catalog?categories=${category}&page=${+currentPage-1}`)
+        if (currentPage - 1 >= 0) {
+            const uriItems = uri.split("&")
+            uriItems[uriItems.length - 1] = `page=${+currentPage-1}`
+            const newUri = uriItems.join("&")
+            
+            router.push(newUri)
         }
     }
 
     const clickBtnNextHandler = () => {
         if (currentPage + 1 <= pagesCount) {
-            router.push(`/catalog?categories=${category}&page=${+currentPage+1}`)
+            const uriItems = uri.split("&")
+            uriItems[uriItems.length - 1] = `page=${+currentPage+1}`
+            const newUri = uriItems.join("&")
+            
+            router.push(newUri)
         }
     }
 
     const clickPaginateHandler = (page) => {
-        router.push(`/catalog?categories=${category}&page=${page}`)
+        const uriItems = uri.split("&")
+        uriItems[uriItems.length - 1] = `page=${page}`
+        const newUri = uriItems.join("&")
+        
+        router.push(newUri)
     }
+
+    const paginateCalc = Math.ceil(currentPage / 10) - 1
+    const paginateOffset = paginateCalc >= 0 ? paginateCalc : 0
 
     return (
             <div className="cat-pagination">
@@ -41,11 +55,11 @@ export const CatalogPaginate = ({pagesCount, currentPage, category}) => {
                     {
                         repeat(pagesCount, (index) => {
                             return (
-                                <li key={index} onClick={() => clickPaginateHandler(index + 1)} className={`cat-pagination__list-item ${index + 1 == currentPage ? "is-active" : ""}`}>
+                                <li key={index} onClick={() => clickPaginateHandler(index)} className={`cat-pagination__list-item ${index == currentPage ? "is-active" : ""}`}>
                                     <a href="#">{index + 1}</a>
                                 </li>
                             )
-                        }).slice(+currentPage - 1, +currentPage + 4)
+                        }).slice((paginateOffset * 10), (paginateOffset * 10) + 10)
                     }
                 </ul>
                 <button onClick={clickBtnNextHandler} className="cat-pagination__next">

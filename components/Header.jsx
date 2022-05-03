@@ -52,9 +52,9 @@ export const Header = () => {
             </div>
             <nav className="nav">
                 <ul className="nav__menu">
-                    <li><a href="#our-tech" className="nav__link">Наша техника</a></li>
-                    <li><a href="#delivery" className="nav__link">Доставка</a></li>
-                    <li><a href="#lizing" className="nav__link">Лизинг</a></li>
+                    <li><Link href="/#our-tech"><a className="nav__link">Наша техника</a></Link></li>
+                    <li><Link href="/#delivery"><a className="nav__link">Доставка</a></Link></li>
+                    <li><Link href="/#lizing"><a className="nav__link">Лизинг</a></Link></li>
                     <li><Link href="/company"><a className="nav__link">О компании</a></Link></li>
                     <li><Link href="/service"><a className="nav__link">Сервис и запчасти</a></Link></li>
                     <li><Link href="/news-catalog"><a className="nav__link">Новости</a></Link></li>

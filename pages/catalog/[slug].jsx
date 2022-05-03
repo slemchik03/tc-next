@@ -2,11 +2,17 @@ import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
+import { OrderCallModal } from '../../components/OrderCallModal';
 
 import { SearchVehicleForm } from '../../components/SearchVehicleForm';
 
 export default function Product({goods}) {
     const [showMore, setShowMore] = useState(false)
+    const [isModalShow, setModalShowStatus] = useState(false)
+
+    const orderProductClickHandler = () => {
+        setModalShowStatus(true)
+    }
 
     if (goods) { // если товар существует - отрисовать его
         const item = goods[0] // получаем товар
@@ -84,7 +90,8 @@ export default function Product({goods}) {
                                         </div>
                                     </div>
                                 </div>
-                                <button className="product-card__pay-btn">Купить</button>
+                                <button onClick={orderProductClickHandler} className="product-card__pay-btn">Купить</button>
+                                <OrderCallModal isOpen={isModalShow} productName={item.name} closeModal={() => setModalShowStatus(false)}/>
                             </div>
                         </div>
                     </div>
