@@ -3,10 +3,19 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { CatalogFilters } from "../components/CatalogFilter/CatalogFilters";
+import { DefaultFilters } from "../components/CatalogFilter/DefaultFilters";
 import { CatalogPaginate } from "../components/CatalogPaginate";
 import { OrderCallModal } from "../components/OrderCallModal";
 
-export default function Catalog({goods, pageCount, currentPage, uri, filters}) {
+export default function Catalog({
+    goods, 
+    pageCount, 
+    currentPage, 
+    uri, 
+    filters,
+    category,
+    initialFilters
+}) {
     const router = useRouter()
     const [selectedProduct, setSelectedProduct] = useState()
     const [isModalShow, setModalShowStatus] = useState(false)
@@ -47,7 +56,12 @@ export default function Catalog({goods, pageCount, currentPage, uri, filters}) {
   <div className="cat-filter">
       <div className="container">
           <div className="cat-filter__content">
-                <CatalogFilters filters={filters}/>
+                <CatalogFilters 
+                    initialFilters={initialFilters} 
+                    currentPage={currentPage} 
+                    category={category} 
+                    filters={filters}
+                />
           </div>
       </div>
   </div>
@@ -123,32 +137,48 @@ export async function getServerSideProps(context) {
         const category = query["categories"]
         const page = !query["page"] ? 1 : query["page"] // если пользователь не задал страницу ставим page=1
 
-        const loadCapacityStart = +query["loadCapacityStart"] ? +query["loadCapacityStart"] : 0 // мин грузоподъемность
-        const loadCapacityEnd = +query["loadCapacityEnd"] ? +query["loadCapacityStart"] : 48000 // макс грузоподъемность
+        const productsFilters = query["filters"] ? query["filters"].split(";").map((filter, index, arr) => {
+            const filterParams = filter.split("-")
 
-        const engineType = query["engine"] ? query["engine"] : "Дизельный" // тип двигателя. по умолчанию дизель
+            if (filterParams.includes("interval")) {
+                const intervalMaxValue = arr[index + 1].split('-')[3] // следуйщий элемент массива будет фильтр с таким же id только с макс значением
+                arr.splice(index + 1, 1) // удаляем следуйщий фильтр который обозначает фильтр с этим же id только с макс значением, так как мы можем прямо отсюда получить к нему доступ
+                const minValue = filterParams[3] ? filterParams[3] : 0 // если пользователь не указал значение ставим 0
+                const maxValue = intervalMaxValue ? intervalMaxValue : 40000 // если пользователь не указал значение ставим 40000
 
-        const manufacturerType = query["manufacture"] ? query["manufacture"] : "Все" // тип производителя 
-        
+                return `filters[]=${filterParams[0]};between;${minValue};${maxValue}&`
+            }
 
+            if (filterParams[1].split(',').length >= 2) { // если в значении фильтра указано 2 или больше параметра, например "тип двигателя:Дизель,Электрический"
+                const filterPropertyParams = filterParams[1].split(',')
+                return `filters[]=${filterParams[0]};in;${filterPropertyParams[0]};${filterPropertyParams[1]}&`
+            }
+
+
+            return `filters[]=${filterParams[0]};=;${filterParams[1]}&`
+        }).join('') : ""
+ 
         // получаем список товаров
-        const productsURI = encodeURI(`https://trade-group.su/apicatalog?categories=${category}&filters[]=13;in;${engineType}&filters[]=3;between;${loadCapacityStart};${loadCapacityEnd}&page=${page}`)
+        const productsURI = encodeURI(`https://trade-group.su/apicatalog?categories=${category}&${productsFilters}page=${page}`)
         const productsResponse = (await axios.get(productsURI)).data
-        // получаем список категорий
-        const filtersResponse = (await axios.get(`https://trade-group.su/apicategories?parent=${category}&show_properties=1`)).data
+        // получаем список фильтров
+        // если пользователь указал фильтры перед переходом в каталог то ищем по фильтры
+        const filtersResponse = productsFilters ? (await axios.get(`https://trade-group.su/apicategories?parent=${category}&show_properties=1`)).data : []
        
         const products = productsResponse["products"]
         const pageCount = productsResponse["pages"]
 
+
         const filters = filtersResponse.filter(item => item.is_filtered === "1")
-        console.log(products);
         return {
             props: {
-                goods: products,
+                goods: !products ? [] : products,
                 pageCount,
                 currentPage: page,
                 uri: context.resolvedUrl,
                 filters,
+                category,
+                initialFilters: !!productsFilters
             }
         }
     } catch (error) {
@@ -158,6 +188,7 @@ export async function getServerSideProps(context) {
                 pageCount: 0,
                 currentPage: 1,
                 category: "",
+                uri: "",
                 error: error + ""
             }
         }

@@ -1,4 +1,4 @@
-export const IntervalFilter = ({name, id}) => {
+export const IntervalFilter = ({name, id, register}) => {
     return (
         <div className="cat-filter__liftingheight">
 
@@ -7,11 +7,11 @@ export const IntervalFilter = ({name, id}) => {
             <div className="cat-filter__liftingheight-inputs">
                 <label className="cat-filter__liftingheight-label">
                     <span className="cat-filter__liftingheight-label-text">От</span>
-                    <input type="number" placeholder="1000" className="cat-filter__liftingheight-input" id="cat-liftingheight-input-0" />
+                    <input {...register(`${id}-interval-min`)} type="number" className="cat-filter__liftingheight-input" id="cat-liftingheight-input-0" />
                 </label>
                 <label className="cat-filter__liftingheight-label">
                     <span className="cat-filter__liftingheight-label-text">До</span>
-                    <input type="number" placeholder="48000" className="cat-filter__liftingheight-input" id="cat-liftingheight-input-1" />
+                    <input {...register(`${id}-interval-max`)} type="number"  className="cat-filter__liftingheight-input" id="cat-liftingheight-input-1" />
                 </label>
             </div>
         </div>

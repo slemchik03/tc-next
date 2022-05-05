@@ -229,7 +229,12 @@
       align-items: center;
     }
     .filter__radio {
-      display: none;
+      position: relative;
+      opacity: 0;
+      right: -14px;
+      top: 0;
+      z-index: 100;
+      cursor: pointer;
     }
     .filter__radio:checked + .filter__label::after {
       transform: scale(1);

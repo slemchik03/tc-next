@@ -11,17 +11,12 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
     const router = useRouter()
 
     const submitHandler = data => {
-        console.log(data);
-        const {
-            manufacturer,
-            engine,
-            loadCapacityStart,
-            loadCapacityEnd
-        } = data
-
+        const path = Object.entries(data).map((el) => {
+            return `${el[0]}-${el[1]}`
+        }).join(';') 
 
         router.push(
-        `/catalog?categories=2&engine=${engine}&loadCapacityStart=${+loadCapacityStart}&loadCapacityEnd=${+loadCapacityEnd}&page=0`
+        `/catalog?categories=2&filters=${path}&page=0`
         )
     }
 
@@ -41,15 +36,15 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <p className="filter__manufacturer-title">Производитель</p>
                             <div className="filter__manufacturer-content">
                                 <div className="filter__manufacturer-item">
-                                    <input {...register("manufacturer")} value="Все"  id="manufacturer-all" className="filter__radio" type="radio"></input> 
+                                    <input value="Все"  id="manufacturer-all" className="filter__radio" type="checkbox"></input> 
                                     <label className="filter__label" htmlFor="manufacturer-all">Все</label>
                                 </div>
                                 <div className="filter__manufacturer-item">
-                                    <input {...register("manufacturer")} value="Китай" id="manufacturer-china" className="filter__radio" type="radio"></input> 
+                                    <input value="Китай" id="manufacturer-china" className="filter__radio" type="checkbox"></input> 
                                     <label className="filter__label" htmlFor="manufacturer-china">Китай</label>
                                 </div>
                                 <div className="filter__manufacturer-item">
-                                    <input {...register("manufacturer")} value="Япония / США" id="manufacturer-japan-usa" className="filter__radio" type="radio"></input> 
+                                    <input  value="Япония / США" id="manufacturer-japan-usa" className="filter__radio" type="checkbox"></input> 
                                     <label className="filter__label" htmlFor="manufacturer-japan-usa">Япония / США</label>
                                 </div>
                             </div>
@@ -59,15 +54,15 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <p className="filter__engine-title">Тип двигателя</p>
                             <div className="filter__engine-content">
                                 <div className="filter__engine-item">
-                                    <input {...register("engine")} value="Бензин / газ" name="engine" id="engine-petrol-gas" className="filter__radio" type="radio"></input> 
+                                    <input {...register("13")} value="Бензин / газ" className="filter__radio" type="checkbox"></input> 
                                     <label className="filter__label" htmlFor="engine-petrol-gas">Бензин / газ</label>
                                 </div>
                                 <div className="filter__engine-item">
-                                    <input {...register("engine")} value="Дизельный" name="engine" id="engine-dizel" className="filter__radio" type="radio"></input> 
+                                    <input {...register("13")} value="Дизельный" className="filter__radio" type="checkbox"></input> 
                                     <label className="filter__label" htmlFor="engine-dizel">Дизельный</label>
                                 </div>
                                 <div className="filter__engine-item">
-                                    <input {...register("engine")} value="Электрический" name="engine" id="engine-electric" className="filter__radio" type="radio"></input> 
+                                    <input {...register("13")} value="Электрический" className="filter__radio" type="checkbox"></input> 
                                     <label className="filter__label" htmlFor="engine-electric">Электрический</label>
                                 </div>
                             </div>
@@ -79,11 +74,11 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <div className="filter__loadcapacity-inputs">
                                 <label className="filter__loadcapacity-label">
                                     <span className="filter__loadcapacity-label-text">От</span>
-                                    <input {...register("loadCapacityStart")} type="number" min="1000" max="48000" placeholder="1000" className="filter__loadcapacity-input" id="loadcapacity-input-0"></input> 
+                                    <input {...register("3-interval-min")} type="number" min="1000" max="48000" placeholder="1000" className="filter__loadcapacity-input" id="loadcapacity-input-0"></input> 
                                 </label>
                                 <label className="filter__loadcapacity-label">
                                     <span className="filter__loadcapacity-label-text">До</span>
-                                    <input {...register("loadCapacityEnd")} type="number" min="1000" max="48000" placeholder="48000" className="filter__loadcapacity-input" id="loadcapacity-input-1"></input> 
+                                    <input {...register("3-interval-max")} type="number" min="1000" max="48000" placeholder="48000" className="filter__loadcapacity-input" id="loadcapacity-input-1"></input> 
                                 </label>
                             </div>
                         </div>
@@ -94,11 +89,11 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <div className="filter__liftingheight-inputs">
                                 <label className="filter__liftingheight-label">
                                     <span className="filter__liftingheight-label-text">От</span>
-                                    <input {...register("liftingHeightStart")} type="number" min="2" max="15200" placeholder="1000" className="filter__liftingheight-input" id="liftingheight-input-0"></input> 
+                                    <input {...register("5-interval-min")} type="number" min="2" max="15200" placeholder="1000" className="filter__liftingheight-input" id="liftingheight-input-0"></input> 
                                 </label>
                                 <label className="filter__liftingheight-label">
                                     <span className="filter__liftingheight-label-text">До</span>
-                                    <input {...register("liftingHeightEnd")} type="number" min="2" max="15200" placeholder="48000" className="filter__liftingheight-input" id="liftingheight-input-1"></input> 
+                                    <input {...register("5-interval-max")} type="number" min="2" max="15200" placeholder="48000" className="filter__liftingheight-input" id="liftingheight-input-1"></input> 
                                 </label>
                             </div>
                         </div>
