@@ -10,10 +10,11 @@ export const CatalogFilters = ({filters, category, currentPage, initialFilters})
 
 
     const submitHandler = data => {
-        const path = Object.entries(data).map((el) => {
-            return `${el[0]}-${el[1]}`
-        }).join(';') 
-
+        const path = Object.entries(data)
+        .filter(el => el[1] !== false)
+        .map(el => `${el[0]}-${el[1]}`)
+        .join(';') 
+        console.log(path);
         router.push(
         `/catalog?categories=${category}&filters=${path}&page=${currentPage}`
         )
@@ -26,9 +27,9 @@ export const CatalogFilters = ({filters, category, currentPage, initialFilters})
                 {
                    initialFilters ? filters?.map(item => {
                         if (item.filter_type === "checkboxes") {
-                            return <CheckBoxFilter register={register} id={item.id} key={item.name} name={item.name}/>
+                            return <CheckBoxFilter filterItem={item} register={register}  key={item.name} />
                         }
-                        return <IntervalFilter id={item.id} register={register} key={item.name} name={item.name}/>
+                        return <IntervalFilter filterItem={item} register={register} key={item.name} />
                     }) : <DefaultFilters register={register} />
                 }
 

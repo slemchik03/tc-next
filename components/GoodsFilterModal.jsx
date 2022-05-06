@@ -7,16 +7,17 @@ ReactModal.setAppElement("body")
 
 
 export const GoodsFilterModal = ({isOpen, closeModal}) => {
-    const {register, handleSubmit, reset} = useForm()
+    const {register, handleSubmit} = useForm()
     const router = useRouter()
 
     const submitHandler = data => {
-        const path = Object.entries(data).map((el) => {
-            return `${el[0]}-${el[1]}`
-        }).join(';') 
+        const path = Object.entries(data)
+        .filter(el => el[1] !== false)
+        .map(el => `${el[0]}-${el[1]}`)
+        .join(';') 
 
         router.push(
-        `/catalog?categories=2&filters=${path}&page=0`
+        `/catalog?categories=4,5&filters=${path}&page=0`
         )
     }
 
@@ -74,11 +75,11 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <div className="filter__loadcapacity-inputs">
                                 <label className="filter__loadcapacity-label">
                                     <span className="filter__loadcapacity-label-text">От</span>
-                                    <input {...register("3-interval-min")} type="number" min="1000" max="48000" placeholder="1000" className="filter__loadcapacity-input" id="loadcapacity-input-0"></input> 
+                                    <input {...register("3-interval-min")} type="number" defaultValue={0} max="48000" placeholder="1000" className="filter__loadcapacity-input" id="loadcapacity-input-0"></input> 
                                 </label>
                                 <label className="filter__loadcapacity-label">
                                     <span className="filter__loadcapacity-label-text">До</span>
-                                    <input {...register("3-interval-max")} type="number" min="1000" max="48000" placeholder="48000" className="filter__loadcapacity-input" id="loadcapacity-input-1"></input> 
+                                    <input {...register("3-interval-max")} type="number" defaultValue={48000} max="48000" placeholder="48000" className="filter__loadcapacity-input" id="loadcapacity-input-1"></input> 
                                 </label>
                             </div>
                         </div>
@@ -89,11 +90,11 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                             <div className="filter__liftingheight-inputs">
                                 <label className="filter__liftingheight-label">
                                     <span className="filter__liftingheight-label-text">От</span>
-                                    <input {...register("5-interval-min")} type="number" min="2" max="15200" placeholder="1000" className="filter__liftingheight-input" id="liftingheight-input-0"></input> 
+                                    <input {...register("5-interval-min")} type="number" defaultValue={0} max="15100" placeholder="1000" className="filter__liftingheight-input" id="liftingheight-input-0"></input> 
                                 </label>
                                 <label className="filter__liftingheight-label">
                                     <span className="filter__liftingheight-label-text">До</span>
-                                    <input {...register("5-interval-max")} type="number" min="2" max="15200" placeholder="48000" className="filter__liftingheight-input" id="liftingheight-input-1"></input> 
+                                    <input {...register("5-interval-max")} type="number" defaultValue={15100} max="15100" placeholder="48000" className="filter__liftingheight-input" id="liftingheight-input-1"></input> 
                                 </label>
                             </div>
                         </div>

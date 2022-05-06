@@ -68,12 +68,15 @@
     &-item {
       display: flex;
       align-items: center;
+      position: relative;
     }
     .cat-filter__radio {
       opacity: 0;
-      position: relative;
+      position: absolute;
       top: 0;
-      right: -15px;
+      left: -15px;
+      width: 40px;
+      height: 20px;
       z-index: 100;
       cursor: pointer;
     }
