@@ -1,5 +1,5 @@
 import ReactModal from "react-modal"
-import defaultModalStyles from "../utils/defaultModalStyles"
+import defaultModalStyles from "../../utils/defaultModalStyles"
 
 ReactModal.setAppElement("body")
 

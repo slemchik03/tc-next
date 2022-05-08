@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { CheckBoxFilter } from "./CheckBoxFilter";
 import { DefaultFilters } from "./DefaultFilters";
 import { IntervalFilter } from "./IntervalFilter";
@@ -7,16 +8,16 @@ import { IntervalFilter } from "./IntervalFilter";
 export const CatalogFilters = ({filters, category, currentPage, initialFilters}) => {
     const {register, handleSubmit} = useForm()
     const router = useRouter()
-
+    const [intervalValues, setIntervalValues] = useState({}) 
 
     const submitHandler = data => {
-        const path = Object.entries(data)
+        const path = Object.entries({...data, ...intervalValues})
         .filter(el => el[1] !== false)
         .map(el => `${el[0]}-${el[1]}`)
         .join(';') 
         console.log(path);
         router.push(
-        `/catalog?categories=${category}&filters=${path}&page=${currentPage}`
+        `/catalog?categories=4,5&filters=${path}&page=${currentPage}`
         )
     }
 
@@ -27,10 +28,28 @@ export const CatalogFilters = ({filters, category, currentPage, initialFilters})
                 {
                    initialFilters ? filters?.map(item => {
                         if (item.filter_type === "checkboxes") {
-                            return <CheckBoxFilter filterItem={item} register={register}  key={item.name} />
+                            return <CheckBoxFilter 
+                                filterItem={item} 
+                                register={register} 
+                                key={item.name}
+                                dark
+                            />
                         }
-                        return <IntervalFilter filterItem={item} register={register} key={item.name} />
-                    }) : <DefaultFilters register={register} />
+                        if (item.filter_type === "interval") {
+                            return <IntervalFilter 
+                                intervalValues={intervalValues} 
+                                setIntervalValues={setIntervalValues} 
+                                filterItem={item} 
+                                key={item.name} 
+                                dark
+                            />
+                        } }) : <DefaultFilters
+                                    intervalValues={intervalValues} 
+                                    setIntervalValues={setIntervalValues} 
+                                    register={register}
+                                    dark
+                                />
+
                 }
 
             </div>

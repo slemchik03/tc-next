@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form"
 import ReactModal from "react-modal"
-import defaultModalStyles from "../utils/defaultModalStyles"
+import defaultModalStyles from "../../utils/defaultModalStyles"
 
 
 export const OrderLizingModal = ({isOpen, closeModal}) => {

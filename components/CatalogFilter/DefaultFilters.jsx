@@ -1,54 +1,35 @@
-export const DefaultFilters = ({register}) => {
+import { CheckBoxFilter } from "./CheckBoxFilter"
+import { IntervalFilter } from "./IntervalFilter"
+
+export const DefaultFilters = ({register, setIntervalValues, intervalValues, dark}) => {
     return (
         <>
-            <div className="cat-filter__liftingheight">
+            <CheckBoxFilter 
+            filterItem={{
+                property_id: "13",
+                name: "Тип двигателя",
+                values: [
+                "Дизельный",
+                "Бензин/газ",
+                "Электрический"
+                ]
+            }} 
+            register={register}
+            dark={dark}
+            />
+            <IntervalFilter 
+                filterItem={{name: "Грузоподъемность", property_id: "3", values: [1000, 48000]}}
+                setIntervalValues={setIntervalValues}
+                intervalValues={intervalValues}
+                dark={dark}
+            />
+            <IntervalFilter 
+                filterItem={{name: "Высота подъема", property_id: "5", values: [2, 4]}}
+                setIntervalValues={setIntervalValues}
+                intervalValues={intervalValues}
+                dark={dark}
+            />
 
-                <p className="cat-filter__liftingheight-title">Грузоподъемность</p>
-                <div className="cat-filter__liftingheight-slider" id="cat-liftingheight-range-slier"></div>
-                <div className="cat-filter__liftingheight-inputs">
-                    <label className="cat-filter__liftingheight-label">
-                        <span className="cat-filter__liftingheight-label-text">От</span>
-                        <input {...register(`3-interval-min`)} type="number" defaultValue={0} className="cat-filter__liftingheight-input" id="cat-liftingheight-input-0" />
-                    </label>
-                    <label className="cat-filter__liftingheight-label">
-                        <span className="cat-filter__liftingheight-label-text">До</span>
-                        <input {...register(`3-interval-max`)} type="number" defaultValue={48000} className="cat-filter__liftingheight-input" id="cat-liftingheight-input-1" />
-                    </label>
-                </div>
-            </div>
-            <div className="cat-filter__liftingheight">
-
-                <p className="cat-filter__liftingheight-title">Высота подъема</p>
-                <div className="cat-filter__liftingheight-slider" id="cat-liftingheight-range-slier"></div>
-                <div className="cat-filter__liftingheight-inputs">
-                    <label className="cat-filter__liftingheight-label">
-                        <span className="cat-filter__liftingheight-label-text">От</span>
-                        <input {...register(`5-interval-min`)} type="number" defaultValue={0} className="cat-filter__liftingheight-input" id="cat-liftingheight-input-0" />
-                    </label>
-                    <label className="cat-filter__liftingheight-label">
-                        <span className="cat-filter__liftingheight-label-text">До</span>
-                        <input {...register(`5-interval-max`)} type="number" defaultValue={15100} className="cat-filter__liftingheight-input" id="cat-liftingheight-input-1" />
-                    </label>
-                </div>
-            </div>
-            <div className="cat-filter__engine">
-                <p className="cat-filter__engine-title">Тип двигателя</p>
-
-                <div className="cat-filter__engine-content">
-                    <div className="cat-filter__engine-item">
-                        <input {...register("13")} value="Бензин/газ" className="cat-filter__radio" type="checkbox" />
-                        <label className="cat-filter__label" htmlFor="cat-engine-petrol-gas">Бензин / газ</label>
-                    </div>
-                    <div className="cat-filter__engine-item">
-                        <input {...register("13")} value="Дизельный" className="cat-filter__radio" type="checkbox" />
-                        <label className="cat-filter__label" htmlFor="cat-engine-petrol-gas">Дизельный</label>
-                    </div>
-                    <div className="cat-filter__engine-item">
-                        <input {...register("13")} value="Электрический" className="cat-filter__radio" type="checkbox" />
-                        <label className="cat-filter__label" htmlFor="cat-engine-petrol-gas">Электрический</label>
-                    </div>
-                </div>
-            </div>
         </>
     )
 }

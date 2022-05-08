@@ -1,10 +1,11 @@
 import axios from "axios"
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { CatalogFilters } from "../components/CatalogFilter/CatalogFilters";
 import { CatalogPaginate } from "../components/CatalogPaginate";
-import { OrderCallModal } from "../components/OrderCallModal";
+import { OrderCallModal } from "../components/Modals/OrderCallModal";
 
 export default function Catalog({
     goods, 
@@ -31,7 +32,7 @@ export default function Catalog({
       <div className="container">
           <div className="breadcrumbs">
               <div className="breadcrumbs__block-white">
-                  <a href="#" className="breadcrumbs__item-white">Главная</a>
+              <Link href="/" ><a className="breadcrumbs__item-white">Главная</a></Link>
               </div>
               <div className="breadcrumbs__block">
                   <span className="breadcrumbs__item">Каталог</span>
@@ -95,7 +96,7 @@ export default function Catalog({
 
                         </div>
                         <div className="catalog__item-btns">
-                            <a onClick={() => router.push("/catalog/" + element.slug)} href="#" className="catalog__item-more-btn">Подробнее</a>
+                            <a onClick={() => router.push(`/catalog/${element.slug}`)} href="#" className="catalog__item-more-btn">Подробнее</a>
                             <button onClick={() => orderProductClickHandler(element)} className="catalog__item-btn" data-modal>Оставить заявку</button>
                         </div>
                     </div>
@@ -130,13 +131,13 @@ export async function getServerSideProps(context) {
             return {              
                 redirect: {
                     permanent: false,
-                    destination: "/catalog?categories=4,5&page=0",
+                    destination: "/catalog?categories=0,2&page=0",
                 }
             }
         }
         // Получаем все параметры с url
         const category = query["categories"]
-        const page = !query["page"] ? 1 : query["page"] // если пользователь не задал страницу ставим page=1
+        const page = (!query["page"] || query["page"] < 0)  ? 0 : query["page"] // если пользователь не задал страницу ставим page=1
 
         const productsFilters = query["filters"] ? query["filters"].split(";").map((filter, index, arr) => {
             const filterParams = filter.split("-") // пример id-value
@@ -156,12 +157,14 @@ export async function getServerSideProps(context) {
                 return `filters[]=${filterParams[0]};in;${filterParams[1]}&`
             }
 
-
+            
             return `filters[]=${filterParams[0]};=;${filterParams[1]}&`
         }).join('') : ""
 
+
         // получаем список товаров
         const productsURI = encodeURI(`https://trade-group.su/apicatalog?categories=${category}&${productsFilters}page=${page}`)
+        console.log(productsURI);
         const productsResponse = (await axios.get(productsURI)).data
 
         const products = productsResponse["products"]
@@ -169,7 +172,7 @@ export async function getServerSideProps(context) {
         const filters = productsResponse["allprops"]
         const links = productsResponse["links"]
 
-        console.log(productsFilters);
+       
 
         return {
             props: {
@@ -188,8 +191,8 @@ export async function getServerSideProps(context) {
             props: {
                 goods: [],
                 pageCount: 0,
-                currentPage: 1,
-                category: "",
+                currentPage: 0,
+                category: "4,5",
                 uri: "",
                 error: error + ""
             }

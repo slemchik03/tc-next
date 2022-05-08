@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { OrderLizingModal } from "./OrderLizingModal"
+import { OrderLizingModal } from "../Modals/OrderLizingModal"
 import { useState } from "react"
 
 export const Lizing = () => {

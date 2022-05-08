@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { ThanksModal } from "./ThanksModal"
+import { ThanksModal } from "../Modals/ThanksModal"
 
 
 export const SearchVehicleForm = ({delivery}) => {

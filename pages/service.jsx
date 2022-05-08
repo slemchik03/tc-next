@@ -1,5 +1,6 @@
 import Image from "next/image"
-import { SearchVehicleForm } from "../components/SearchVehicleForm"
+import Link from "next/link"
+import { SearchVehicleForm } from "../components/Forms/SearchVehicleForm"
 
 const Service = () => {
     return (
@@ -8,7 +9,7 @@ const Service = () => {
                 <div className="container">
                     <div className="breadcrumbs">
                         <div className="breadcrumbs__block">
-                            <a href="#" className="breadcrumbs__item">Главная</a>
+                            <Link href="/" ><a className="breadcrumbs__item">Главная</a></Link>
                         </div>
                         <div className="breadcrumbs__block">
                             <span className="breadcrumbs__item">Сервис и запчасти</span>
@@ -18,7 +19,7 @@ const Service = () => {
                         <div className="service-s1__left">
                             <div className="service-s1__title">Сервис и запчасти</div>
                             <div className="service-s1__subtitle">
-                                <span>Warehouse Automation</span> занимается гарантийным ремонтом и сервисным обслуживанием вилочных погрузчиков, складской и дорожно-строительной техники.
+                                <span>TRADE - GROUP</span> занимается гарантийным ремонтом и сервисным обслуживанием вилочных погрузчиков, складской и дорожно-строительной техники.
                             </div>
                             <div className="service-s1__city">
                                 <div className="service-s1__city-title">Мы имеем мобильные сервисные бригады в городах:</div>

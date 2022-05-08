@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { useState } from "react"
-import { OrderCallModal } from "./OrderCallModal"
+import { OrderCallModal } from "../Modals/OrderCallModal"
+
 
 
 export const Header = () => {

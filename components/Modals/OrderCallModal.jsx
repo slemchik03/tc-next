@@ -1,5 +1,5 @@
 import ReactModal from "react-modal"
-import defaultModalStyles from "../utils/defaultModalStyles"
+import defaultModalStyles from "../../utils/defaultModalStyles"
 import {useForm} from "react-hook-form"
 
 ReactModal.setAppElement("body")

@@ -2,9 +2,9 @@ import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
-import { OrderCallModal } from '../../components/OrderCallModal';
-
-import { SearchVehicleForm } from '../../components/SearchVehicleForm';
+import { OrderCallModal } from '../../components/Modals/OrderCallModal';
+import { SearchVehicleForm } from '../../components/Forms/SearchVehicleForm';
+import Link from 'next/link';
 
 export default function Product({goods}) {
     const [showMore, setShowMore] = useState(false)
@@ -14,18 +14,27 @@ export default function Product({goods}) {
         setModalShowStatus(true)
     }
 
+    const isFile = value => {
+        const arr = value?.split("/") ? value.split("/") : []
+        return arr[arr.length - 1]?.includes(".pdf")
+    }
+
     if (goods) { // если товар существует - отрисовать его
         const item = goods[0] // получаем товар
         return (
             <div>
             <Head>
-                <title>{item.article}</title>
+                <title>{item["name"]}</title>
+                <meta name="description" content={item["description"]}/>
             </Head>
             <div className="product-card">
                     <div className="container">
                         <div className="breadcrumbs">
                             <div className="breadcrumbs__block-white">
-                                <a href="#" className="breadcrumbs__item breadcrumbs__item-white">Главная</a>
+                                <Link href="/"><a  className="breadcrumbs__item breadcrumbs__item-white">Главная</a></Link>
+                            </div>
+                            <div className="breadcrumbs__block-white">
+                                <Link href={"/catalog?categories=4,5&page=0"}><a  className="breadcrumbs__item breadcrumbs__item-white">Каталог</a></Link>
                             </div>
                             <div className="breadcrumbs__block">
                                 <span className="breadcrumbs__item">{item.article}</span>
@@ -61,13 +70,28 @@ export default function Product({goods}) {
                                         <div className="characteristic-wrapper">
                                             {
                                                 item.properties.map((element, index) => {
+                                                    const property = element["property"]
+                                                    const value = element["value"]
+
                                                     return (
                                                     <div key={index} className="product-card__tabs-catalog-item bottom-line">
                                                         <div className="product-card__tabs-catalog-item-left">
-                                                            {element["property"] + ":"}
+                                                            {property + ":"}
                                                         </div>
                                                         <div className="product-card__tabs-catalog-item-right">
-                                                            {element["value"]}
+                                                            {
+                                                              isFile(value) 
+                                                              ? 
+                                                                <a 
+                                                                    rel="noreferrer" 
+                                                                    target={"_blank"} 
+                                                                    href={"http://trade-group.su" + value} 
+                                                                    className="characteristic-show-more"
+                                                                >
+                                                                    Скачать
+                                                                </a>
+                                                              : value
+                                                            }
                                                         </div>
                                                     </div>
                                                     )
@@ -123,12 +147,12 @@ export default function Product({goods}) {
 
 export async function getServerSideProps(context) {
     try {
-        const {params} = context
+        const {params, query} = context
         const response = (await axios.get(`https://trade-group.su/apicatalog?slug=${params.slug}`)).data
 
         return {
             props: {
-                goods: response 
+                goods: response,
             }
         }
     } catch(e) {

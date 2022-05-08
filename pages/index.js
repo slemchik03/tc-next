@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Lizing } from '../components/Lizing'
-import { News } from '../components/News'
-import { OurTech } from '../components/OurTech'
-import { SearchVehicleForm } from '../components/SearchVehicleForm'
+import { Lizing } from '../components/Sections/Lizing'
+import { News } from '../components/Sections/News'
+import { OurTech } from '../components/Sections/OurTech'
+import { SearchVehicleForm } from '../components/Forms/SearchVehicleForm'
 
 export default function Home() {
   return (

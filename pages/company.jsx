@@ -1,7 +1,8 @@
+import Link from "next/link"
 import { Navigation } from "swiper"
 import {Swiper} from "swiper/react"
 import { SwiperSlide } from "swiper/react"
-import { SearchVehicleForm } from "../components/SearchVehicleForm"
+import { SearchVehicleForm } from "../components/Forms/SearchVehicleForm"
 
 const Company = () => {
     return (
@@ -10,7 +11,7 @@ const Company = () => {
                 <div className="container">
                     <div className="breadcrumbs">
                         <div className="breadcrumbs__block">
-                            <a href="#" className="breadcrumbs__item">Главная</a>
+                        <Link href="/" ><a className="breadcrumbs__item">Главная</a></Link>
                         </div>
                         <div className="breadcrumbs__block">
                             <span className="breadcrumbs__item">О компании</span>
@@ -19,7 +20,7 @@ const Company = () => {
                     <div className="about__wrapper">
                         <div className="about__title">О компании</div>
                         <div className="about__subtitle">
-                            <span>Компания Warehouse Automation</span> занимает одну из лидирующих позиций на рынке техники для склада и вилочных погрузчиков.
+                            <span>Компания TRADE - GROUP</span> занимает одну из лидирующих позиций на рынке техники для склада и вилочных погрузчиков.
                         </div>
                         <div className="about__list">
                             <div className="about__list-title">Мы поставляем широкий ассортимент техники для склада:</div>

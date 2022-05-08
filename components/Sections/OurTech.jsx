@@ -2,7 +2,7 @@ import Image from "next/image"
 import { useState } from "react";
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { GoodsFilterModal } from "./GoodsFilterModal";
+import { GoodsFilterModal } from "../Modals/GoodsFilterModal";
 
 
 export const OurTech = () => {

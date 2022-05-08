@@ -1,4 +1,4 @@
-import { Layout } from '../components/Layout';
+import { Layout } from '../components/Sections/Layout';
 import NextNProgress from "nextjs-progressbar";
 import '../styles/scss/style.scss'
 
@@ -21,5 +21,6 @@ function MyApp({ Component, pageProps }) {
   );
   
 }
+
 
 export default MyApp

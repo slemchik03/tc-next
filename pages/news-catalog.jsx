@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const NewsCatalog = () => {
     return (
         <div>
@@ -5,10 +7,10 @@ const NewsCatalog = () => {
             <div className="container">
                 <div className="breadcrumbs">
                     <div className="breadcrumbs__block-white">
-                        <a href="#" className="breadcrumbs__item breadcrumbs__item-white">Главная</a>
+                        <Link href="/"><a className="breadcrumbs__item breadcrumbs__item-white">Главная</a></Link>
                     </div>
                     <div className="breadcrumbs__block-white">
-                        <span className="breadcrumbs__item">Сервис и запчасти</span>
+                        <span className="breadcrumbs__item">Новости</span>
                     </div>
                 </div>
                 <div className="news-catalog__title">новости</div>
@@ -25,142 +27,98 @@ const NewsCatalog = () => {
                         </li>
                     </ul>
                 </nav>
-                <div className="news-catalog__wrapper">
-                    <div className="news-catalog__item" data-category="new">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt="" />
+                    <div className="news-catalog__wrapper">
+                        <div className="news-catalog__item" data-category="new">
+                            <div className="news-catalog__item-img">
+                                <img src="/news/img-1.webp" alt="" />
+                            </div>
+                            <p className="news-catalog__item-date">17.02.2022</p>
+                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
+                            <p className="news-catalog__item-text">
+                                Здравствуйте, дорогие друзья! <br/>
+                                Команда TRADE - GROUP<br/>
+                                от всей души поздравляет <br/>
+                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
+                                Команда Warehouse automation
+                            </p>
+                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
                         </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item"  data-category="new">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt=""/>
+                        <div className="news-catalog__item" data-category="new">
+                            <div className="news-catalog__item-img">
+                                <img src="/news/img-1.webp" alt="" />
+                            </div>
+                            <p className="news-catalog__item-date">17.02.2022</p>
+                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
+                            <p className="news-catalog__item-text">
+                                Здравствуйте, дорогие друзья! <br/>
+                                Команда TRADE - GROUP<br/>
+                                от всей души поздравляет <br/>
+                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
+                                Команда Warehouse automation
+                            </p>
+                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
                         </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="new">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt=""/>
+                        <div className="news-catalog__item" data-category="new">
+                            <div className="news-catalog__item-img">
+                                <img src="/news/img-1.webp" alt="" />
+                            </div>
+                            <p className="news-catalog__item-date">17.02.2022</p>
+                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
+                            <p className="news-catalog__item-text">
+                                Здравствуйте, дорогие друзья! <br/>
+                                Команда TRADE - GROUP<br/>
+                                от всей души поздравляет <br/>
+                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
+                                Команда Warehouse automation
+                            </p>
+                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
                         </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="new">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt=""/>
+                        <div className="news-catalog__item" data-category="new">
+                            <div className="news-catalog__item-img">
+                                <img src="/news/img-1.webp" alt="" />
+                            </div>
+                            <p className="news-catalog__item-date">17.02.2022</p>
+                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
+                            <p className="news-catalog__item-text">
+                                Здравствуйте, дорогие друзья! <br/>
+                                Команда TRADE - GROUP<br/>
+                                от всей души поздравляет <br/>
+                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
+                                Команда Warehouse automation
+                            </p>
+                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
                         </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="new">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt="" />
+                        <div className="news-catalog__item" data-category="new">
+                            <div className="news-catalog__item-img">
+                                <img src="/news/img-1.webp" alt="" />
+                            </div>
+                            <p className="news-catalog__item-date">17.02.2022</p>
+                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
+                            <p className="news-catalog__item-text">
+                                Здравствуйте, дорогие друзья! <br/>
+                                Команда TRADE - GROUP<br/>
+                                от всей души поздравляет <br/>
+                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
+                                Команда Warehouse automation
+                            </p>
+                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
                         </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="popular">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt=""/>
+                        <div className="news-catalog__item" data-category="new">
+                            <div className="news-catalog__item-img">
+                                <img src="/news/img-1.webp" alt="" />
+                            </div>
+                            <p className="news-catalog__item-date">17.02.2022</p>
+                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
+                            <p className="news-catalog__item-text">
+                                Здравствуйте, дорогие друзья! <br/>
+                                Команда TRADE - GROUP<br/>
+                                от всей души поздравляет <br/>
+                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
+                                Команда Warehouse automation
+                            </p>
+                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
                         </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="popular">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt=""/>
-                        </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br/>
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="popular">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt="" />
-                        </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br />
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
-                    <div className="news-catalog__item" data-category="popular">
-                        <div className="news-catalog__item-img">
-                            <img src="/news/img-1.webp" alt="" />
-                        </div>
-                        <p className="news-catalog__item-date">17.02.2022</p>
-                        <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                        <p className="news-catalog__item-text">
-                            Здравствуйте, дорогие друзья! <br />
-                            Команда Warehouse automation <br/>
-                            от всей души поздравляет <br/>
-                            С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                            Команда Warehouse automation
-                        </p>
-                        <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                    </div>
+
                 </div>
                 <div className="pagination">
                     <div className="pagination__wrapper">
