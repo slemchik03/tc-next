@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { CheckBoxFilter } from "./CheckBoxFilter";
 import { DefaultFilters } from "./DefaultFilters";
 import { IntervalFilter } from "./IntervalFilter";
 
-export const CatalogFilters = ({filters, category, currentPage, initialFilters}) => {
+export const CatalogFilters = ({filters, currentPage, initialFilters}) => {
     const {register, handleSubmit} = useForm()
     const router = useRouter()
     const [intervalValues, setIntervalValues] = useState({}) 
@@ -15,12 +15,15 @@ export const CatalogFilters = ({filters, category, currentPage, initialFilters})
         .filter(el => el[1] !== false)
         .map(el => `${el[0]}-${el[1]}`)
         .join(';') 
-        console.log(path);
+
         router.push(
         `/catalog?categories=4,5&filters=${path}&page=${currentPage}`
         )
     }
 
+    const resetInterval = () => {
+        setIntervalValues({})
+    }
     return (
             <form onSubmit={handleSubmit(submitHandler)} className="cat-filter__form">
             <div className="cat-filter__inner">
@@ -56,7 +59,7 @@ export const CatalogFilters = ({filters, category, currentPage, initialFilters})
 
             <div className="cat-filter__btns">
                 <button type="submit" className="cat-filter__show">Показать</button>
-                <button type="reset" className="cat-filter__reset">Сбросить фильтры</button>
+                <button onClick={resetInterval} type="reset" className="cat-filter__reset">Сбросить фильтры</button>
             </div>
         </form>
     )

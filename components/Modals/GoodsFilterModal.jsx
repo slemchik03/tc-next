@@ -25,6 +25,9 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
         )
     }
 
+    const resetInterval = () => {
+        setIntervalValues({})
+    }
     return (
         <ReactModal isOpen={isOpen} style={{...defaultModalStyles}}>
             <div className="filter">
@@ -64,7 +67,7 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
 
                         <div className="filter__btns">
                             <button type="submit" className="filter__show">Показать</button>
-                            <button type="reset" className="filter__reset">Сбросить фильтры</button>
+                            <button onClick={resetInterval} type="reset" className="filter__reset">Сбросить фильтры</button>
                         </div>
                     </form>
                 </div>

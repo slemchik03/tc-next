@@ -89,7 +89,6 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
                         bottom: "-20px",
                         color: dark ? "#fff" : "black",
                         fontSize: "14px",
-                        textAlign: "center"
                     }}>
                         {value}
                     </p>

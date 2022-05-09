@@ -61,7 +61,6 @@ export default function Catalog({
                 <CatalogFilters 
                     initialFilters={initialFilters} 
                     currentPage={currentPage} 
-                    category={category} 
                     filters={filters}
                 />
           </div>
@@ -105,7 +104,7 @@ export default function Catalog({
                   
               }
             {
-                !goods.length && <div>Товары не найдены!</div>
+                !goods.length && <p style={{textAlign: "center", color:"#fff", fontSize: "24px"}}>Товары не найдены!</p>
 
             }
           </div>
@@ -164,7 +163,6 @@ export async function getServerSideProps(context) {
 
         // получаем список товаров
         const productsURI = encodeURI(`https://trade-group.su/apicatalog?categories=${category}&${productsFilters}page=${page}`)
-        console.log(productsURI);
         const productsResponse = (await axios.get(productsURI)).data
 
         const products = productsResponse["products"]
@@ -172,8 +170,7 @@ export async function getServerSideProps(context) {
         const filters = productsResponse["allprops"]
         const links = productsResponse["links"]
 
-       
-
+    
         return {
             props: {
                 goods: !products ? [] : products,
