@@ -62,6 +62,7 @@ export default function Catalog({
                     initialFilters={initialFilters} 
                     currentPage={currentPage} 
                     filters={filters}
+                    category={category}
                 />
           </div>
       </div>
@@ -95,7 +96,7 @@ export default function Catalog({
 
                         </div>
                         <div className="catalog__item-btns">
-                            <a onClick={() => router.push(`/catalog/${element.slug}`)} href="#" className="catalog__item-more-btn">Подробнее</a>
+                            <a onClick={() => router.push(`/catalog/${element.slug}`)} className="catalog__item-more-btn">Подробнее</a>
                             <button onClick={() => orderProductClickHandler(element)} className="catalog__item-btn" data-modal>Оставить заявку</button>
                         </div>
                     </div>

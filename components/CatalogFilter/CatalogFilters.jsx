@@ -5,7 +5,7 @@ import { CheckBoxFilter } from "./CheckBoxFilter";
 import { DefaultFilters } from "./DefaultFilters";
 import { IntervalFilter } from "./IntervalFilter";
 
-export const CatalogFilters = ({filters, currentPage, initialFilters}) => {
+export const CatalogFilters = ({filters, currentPage, initialFilters, category}) => {
     const {register, handleSubmit} = useForm()
     const router = useRouter()
     const [intervalValues, setIntervalValues] = useState({}) 
@@ -17,7 +17,7 @@ export const CatalogFilters = ({filters, currentPage, initialFilters}) => {
         .join(';') 
 
         router.push(
-        `/catalog?categories=4,5&filters=${path}&page=${currentPage}`
+        `/catalog?categories=${category}&filters=${path}&page=${currentPage}`
         )
     }
 

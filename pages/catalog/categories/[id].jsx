@@ -65,7 +65,7 @@ export const getServerSideProps = async (context) => {
         return {           
             redirect: {
                 permanent: false,
-                destination: `/catalog?categories=${prevId}&page=0`,
+                destination: `/catalog?categories=${`${prevId},${+prevId+1}`}&page=0`,
             }
         }
     }
