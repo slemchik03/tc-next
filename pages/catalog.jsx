@@ -174,7 +174,7 @@ export async function getServerSideProps(context) {
         return {
             props: {
                 goods: !products ? [] : products,
-                pageCount,
+                pageCount: pageCount ? pageCount : 0,
                 currentPage: page,
                 uri: context.resolvedUrl,
                 filters,

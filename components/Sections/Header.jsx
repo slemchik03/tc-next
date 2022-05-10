@@ -59,7 +59,7 @@ export const Header = () => {
                     <li><Link href="/company"><a className="nav__link">О компании</a></Link></li>
                     <li><Link href="/service"><a className="nav__link">Сервис и запчасти</a></Link></li>
                     <li><Link href="/news-catalog"><a className="nav__link">Новости</a></Link></li>
-                    <li><Link href="/catalog"><a className="nav__link">Каталог</a></Link></li>
+                    <li><Link href="/catalog/categories/0"><a className="nav__link">Каталог</a></Link></li>
                     <li><a href="#footer" className="nav__link">Контакты</a></li>
                 </ul>
             </nav>
@@ -73,7 +73,7 @@ export const Header = () => {
                     <li><Link href="/company"><a  className="mobile-nav__link">О компании</a></Link></li>
                     <li><Link href="/service"><a className="mobile-nav__link">Сервис и запчасти</a></Link></li>
                     <li><Link href="/news-catalog"><a className="mobile-nav__link">Новости</a></Link></li>
-                    <li><Link href="/catalog"><a className="mobile-nav__link">Каталог</a></Link></li>
+                    <li><Link href="/catalog/categories/0"><a className="mobile-nav__link">Каталог</a></Link></li>
                     <li><a href="#footer" className="mobile-nav__link">Контакты</a></li>
                 </ul>
             </nav>
