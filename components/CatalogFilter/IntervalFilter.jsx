@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import { Range } from "react-range";
+
 
 export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, dark}) => {
     const {
@@ -19,14 +18,6 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
         values[1]
 
 
-    useEffect(() => {
-        setIntervalValues({
-            ...intervalValues, 
-            [`${property_id}-interval-min`]: values[0],
-            [`${property_id}-interval-max`]: values[1],
-        })
-    }, [])
-
     return (
         <div className="cat-filter__liftingheight">
 
@@ -40,11 +31,11 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
                 ]}
                 min={values[0]}
                 max={values[1]}
-                onChange={(values) => {
+                onChange={(currentValues) => {
                     setIntervalValues({
                         ...intervalValues, 
-                        [`${property_id}-interval-min`]: values[0],
-                        [`${property_id}-interval-max`]: values[1],
+                        [`${property_id}-interval-min`]: currentValues[0],
+                        [`${property_id}-interval-max`]: currentValues[1],
                     })
                 }}
                 renderTrack={({ props, children }) => (
@@ -89,6 +80,7 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
                         bottom: "-20px",
                         color: dark ? "#fff" : "black",
                         fontSize: "14px",
+                        zIndex: "99999"
                     }}>
                         {value}
                     </p>

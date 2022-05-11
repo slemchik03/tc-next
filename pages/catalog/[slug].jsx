@@ -6,7 +6,7 @@ import { OrderCallModal } from '../../components/Modals/OrderCallModal';
 import { SearchVehicleForm } from '../../components/Forms/SearchVehicleForm';
 import Link from 'next/link';
 
-export default function Product({goods}) {
+export default function Product({goods, catalogURI}) {
     const [showMore, setShowMore] = useState(false)
     const [isModalShow, setModalShowStatus] = useState(false)
 
@@ -34,7 +34,7 @@ export default function Product({goods}) {
                                 <Link href="/"><a  className="breadcrumbs__item breadcrumbs__item-white">Главная</a></Link>
                             </div>
                             <div className="breadcrumbs__block-white">
-                                <Link href={"/catalog?categories=4,5&page=0"}><a  className="breadcrumbs__item breadcrumbs__item-white">Каталог</a></Link>
+                                <Link href={catalogURI}><a  className="breadcrumbs__item breadcrumbs__item-white">Каталог</a></Link>
                             </div>
                             <div className="breadcrumbs__block">
                                 <span className="breadcrumbs__item">{item.article}</span>
@@ -153,6 +153,7 @@ export async function getServerSideProps(context) {
         return {
             props: {
                 goods: response,
+                catalogURI: decodeURIComponent(query["catalogURI"])
             }
         }
     } catch(e) {

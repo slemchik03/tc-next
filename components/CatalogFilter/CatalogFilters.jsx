@@ -10,19 +10,20 @@ export const CatalogFilters = ({filters, currentPage, initialFilters, category})
     const router = useRouter()
     const [intervalValues, setIntervalValues] = useState({}) 
 
+    const resetInterval = () => {
+        setIntervalValues({})
+    }
+
     const submitHandler = data => {
         const path = Object.entries({...data, ...intervalValues})
         .filter(el => el[1] !== false)
         .map(el => `${el[0]}-${el[1]}`)
         .join(';') 
 
+        resetInterval()
         router.push(
         `/catalog?categories=${category}&filters=${path}&page=${currentPage}`
         )
-    }
-
-    const resetInterval = () => {
-        setIntervalValues({})
     }
     return (
             <form onSubmit={handleSubmit(submitHandler)} className="cat-filter__form">

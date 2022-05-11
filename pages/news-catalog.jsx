@@ -1,6 +1,7 @@
+import axios from "axios"
 import Link from "next/link"
 
-const NewsCatalog = () => {
+const NewsCatalog = ({news}) => {
     return (
         <div>
         <div className="news-catalog">
@@ -22,105 +23,32 @@ const NewsCatalog = () => {
                         <li>
                             <div className="news-catalog__nav-btn is-active" data-news-filter="new"><span>Н</span>овые</div>
                         </li>
-                        <li>
+                        {/* <li>
                             <div className="news-catalog__nav-btn" data-news-filter="popular"><span>П</span>опулярные</div>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
                     <div className="news-catalog__wrapper">
-                        <div className="news-catalog__item" data-category="new">
-                            <div className="news-catalog__item-img">
-                                <img src="/news/img-1.webp" alt="" />
-                            </div>
-                            <p className="news-catalog__item-date">17.02.2022</p>
-                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                            <p className="news-catalog__item-text">
-                                Здравствуйте, дорогие друзья! <br/>
-                                Команда TRADE - GROUP<br/>
-                                от всей души поздравляет <br/>
-                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                                Команда Warehouse automation
-                            </p>
-                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                        </div>
-                        <div className="news-catalog__item" data-category="new">
-                            <div className="news-catalog__item-img">
-                                <img src="/news/img-1.webp" alt="" />
-                            </div>
-                            <p className="news-catalog__item-date">17.02.2022</p>
-                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                            <p className="news-catalog__item-text">
-                                Здравствуйте, дорогие друзья! <br/>
-                                Команда TRADE - GROUP<br/>
-                                от всей души поздравляет <br/>
-                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                                Команда Warehouse automation
-                            </p>
-                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                        </div>
-                        <div className="news-catalog__item" data-category="new">
-                            <div className="news-catalog__item-img">
-                                <img src="/news/img-1.webp" alt="" />
-                            </div>
-                            <p className="news-catalog__item-date">17.02.2022</p>
-                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                            <p className="news-catalog__item-text">
-                                Здравствуйте, дорогие друзья! <br/>
-                                Команда TRADE - GROUP<br/>
-                                от всей души поздравляет <br/>
-                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                                Команда Warehouse automation
-                            </p>
-                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                        </div>
-                        <div className="news-catalog__item" data-category="new">
-                            <div className="news-catalog__item-img">
-                                <img src="/news/img-1.webp" alt="" />
-                            </div>
-                            <p className="news-catalog__item-date">17.02.2022</p>
-                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                            <p className="news-catalog__item-text">
-                                Здравствуйте, дорогие друзья! <br/>
-                                Команда TRADE - GROUP<br/>
-                                от всей души поздравляет <br/>
-                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                                Команда Warehouse automation
-                            </p>
-                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                        </div>
-                        <div className="news-catalog__item" data-category="new">
-                            <div className="news-catalog__item-img">
-                                <img src="/news/img-1.webp" alt="" />
-                            </div>
-                            <p className="news-catalog__item-date">17.02.2022</p>
-                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                            <p className="news-catalog__item-text">
-                                Здравствуйте, дорогие друзья! <br/>
-                                Команда TRADE - GROUP<br/>
-                                от всей души поздравляет <br/>
-                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                                Команда Warehouse automation
-                            </p>
-                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                        </div>
-                        <div className="news-catalog__item" data-category="new">
-                            <div className="news-catalog__item-img">
-                                <img src="/news/img-1.webp" alt="" />
-                            </div>
-                            <p className="news-catalog__item-date">17.02.2022</p>
-                            <p className="news-catalog__item-title">Поздравляем Вас с 23 февраля!</p>
-                            <p className="news-catalog__item-text">
-                                Здравствуйте, дорогие друзья! <br/>
-                                Команда TRADE - GROUP<br/>
-                                от всей души поздравляет <br/>
-                                С ДНЕМ ЗАЩИТНИКА ОТЕЧЕСТВА! Здравствуйте, дорогие друзья!<br/>
-                                Команда Warehouse automation
-                            </p>
-                            <a href="#" className="news-catalog__item-link">Читать полностью</a>
-                        </div>
+                        {
+                            news?.map((element, index) => {
+                                return (
+                                    <div key={index} className="news-catalog__item" data-category="new">
+                                    <div className="news-catalog__item-img">
+                                        <img src={element.image} alt="" />
+                                    </div>
+                                    <p className="news-catalog__item-date">{element.date}</p>
+                                    <p className="news-catalog__item-title">{element.title}</p>
+                                    <p className="news-catalog__item-text">
+
+                                    </p>
+                                    <a href="#" className="news-catalog__item-link">Читать полностью</a>
+                                </div>
+                                )
+                            })
+                        }
 
                 </div>
-                <div className="pagination">
+                {/* <div className="pagination">
                     <div className="pagination__wrapper">
                         <button className="pagination__prev">
                             <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +68,7 @@ const NewsCatalog = () => {
                             </svg>                                    
                         </button>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
         </div>
@@ -149,3 +77,13 @@ const NewsCatalog = () => {
 }
 
 export default NewsCatalog
+
+export const getServerSideProps = async (context) => {
+
+    const newsResponse = (await axios.get("https://trade-group.su/apinews")).data
+    return {
+        props: {
+            news: newsResponse ? newsResponse : []
+        }
+    }
+}

@@ -15,7 +15,8 @@ export default function Catalog({
     filters,
     category,
     initialFilters,
-    links
+    links,
+    filtersURI
 }) {
     const router = useRouter()
     const [selectedProduct, setSelectedProduct] = useState()
@@ -44,8 +45,15 @@ export default function Catalog({
                   <ul>
                       {
                           links?.map(link => {
+                              const quickLink = link["url"]?.split("?")[1]
+                              const path = `/catalog?categories=${category}&filters=${filtersURI}&quickLink=${encodeURIComponent(quickLink)}&page=${currentPage}`
+                            
                               return (
-                                <li key={link.title}><a href="#" className="requests__link">{link.title}</a></li>
+                                <li key={link.title}>
+                                    <a onClick={() => router.push(path)} className="requests__link">
+                                        {link.title}
+                                    </a>
+                                </li>
                               )
                           })
                       }
@@ -78,7 +86,7 @@ export default function Catalog({
                         <div className="catalog__item-img">
                             <Image width="384px" height="256px" src={element.image} alt="" />
                         </div>
-                        <div className="catalog__item-favorite-btn">
+                        <div style={{visibility: "hidden"}} className="catalog__item-favorite-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="gray"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
                         </div>
                         <div className="catalog__item-title">{element.name}</div>
@@ -86,7 +94,7 @@ export default function Catalog({
                         {
                             element.properties.map((element, index) => {
                                 return (
-                                    <div key={index} className="catalog__item-info-block">
+                                    <div key={element["value"]} className="catalog__item-info-block">
                                         <div className="catalog__item-info-right">{element["property"]}</div>
                                         <div className="catalog__item-info-left">{element["value"]}</div>
                                     </div>
@@ -96,7 +104,7 @@ export default function Catalog({
 
                         </div>
                         <div className="catalog__item-btns">
-                            <a onClick={() => router.push(`/catalog/${element.slug}`)} className="catalog__item-more-btn">Подробнее</a>
+                            <a onClick={() => router.push(`/catalog/${element.slug}?catalogURI=${encodeURIComponent(uri)}`)} className="catalog__item-more-btn">Подробнее</a>
                             <button onClick={() => orderProductClickHandler(element)} className="catalog__item-btn" data-modal>Оставить заявку</button>
                         </div>
                     </div>
@@ -161,9 +169,15 @@ export async function getServerSideProps(context) {
             return `filters[]=${filterParams[0]};=;${filterParams[1]}&`
         }).join('') : ""
 
+        const quickLink = query["quickLink"] ? decodeURIComponent(query["quickLink"]) : false
 
         // получаем список товаров
-        const productsURI = encodeURI(`https://trade-group.su/apicatalog?categories=${category}&${productsFilters}page=${page}`)
+        const productsURI = quickLink 
+            ? 
+            encodeURI(`https://trade-group.su/apicatalog?${quickLink}`) 
+            :
+            encodeURI(`https://trade-group.su/apicatalog?categories=${category}&${productsFilters}page=${page}`)
+            
         const productsResponse = (await axios.get(productsURI)).data
 
         const products = productsResponse["products"]
@@ -171,7 +185,7 @@ export async function getServerSideProps(context) {
         const filters = productsResponse["allprops"]
         const links = productsResponse["links"]
 
-    
+
         return {
             props: {
                 goods: !products ? [] : products,
@@ -179,6 +193,7 @@ export async function getServerSideProps(context) {
                 currentPage: page,
                 uri: context.resolvedUrl,
                 filters,
+                filtersURI: query["filters"],
                 category,
                 links,
                 initialFilters: !!productsFilters
