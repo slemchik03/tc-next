@@ -5,7 +5,7 @@ import { CheckBoxFilter } from "./CheckBoxFilter";
 import { DefaultFilters } from "./DefaultFilters";
 import { IntervalFilter } from "./IntervalFilter";
 
-export const CatalogFilters = ({filters, currentPage, initialFilters, category}) => {
+export const CatalogFilters = ({filtersList}) => {
     const {register, handleSubmit} = useForm()
     const router = useRouter()
     const [intervalValues, setIntervalValues] = useState({}) 
@@ -13,7 +13,7 @@ export const CatalogFilters = ({filters, currentPage, initialFilters, category})
     const resetInterval = () => {
         setIntervalValues({})
     }
-
+    const initialFilters = router.query["filters"] ? router.query["filters"] : ""
     const submitHandler = data => {
         const path = Object.entries({...data, ...intervalValues})
         .filter(el => el[1] !== false)
@@ -21,16 +21,15 @@ export const CatalogFilters = ({filters, currentPage, initialFilters, category})
         .join(';') 
 
         resetInterval()
-        router.push(
-        `/catalog?categories=${category}&filters=${path}&page=${currentPage}`
-        )
+        router.push({href: router.pathname, query: {...router.query, filters: path, quickLink: ""}})
     }
+
     return (
             <form onSubmit={handleSubmit(submitHandler)} className="cat-filter__form">
             <div className="cat-filter__inner">
 
                 {
-                   initialFilters ? filters?.map(item => {
+                   initialFilters ? filtersList?.map(item => {
                         if (item.filter_type === "checkboxes") {
                             return <CheckBoxFilter 
                                 filterItem={item} 

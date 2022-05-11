@@ -38,7 +38,6 @@ export default function CategoriesList({goods, id}) {
 
                         </div>
                         <div className="catalog__item-btns">
-                            <a onClick={() => router.push(`/catalog/${element.slug}`)} className="catalog__item-more-btn">Подробнее</a>
                             <button onClick={() => router.push(`/catalog/categories/${element["id"]}?prevId=${id}`)} className="catalog__item-btn">Перейти</button>
                         </div>
                     </div>

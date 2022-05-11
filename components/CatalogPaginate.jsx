@@ -10,43 +10,32 @@ const repeat = (n, callback) => {
     return res
 }
 
-export const CatalogPaginate = ({pagesCount, currentPage, uri}) => {
+
+export const CatalogPaginate = ({pagesCount}) => {
     const router = useRouter()
+    const currentPage = router.query["page"]
+
     const [page, setPage] = useState(currentPage)
-
-    const uriParams = uri.split("&")
-    const uriPageParamIndex = uriParams.indexOf(`page=${page}`)
-
 
     const clickBtnPrevHandler = () => {
         if (page - 1 >= 0) {
-            const newPage = +page - 1
-            uriParams[uriPageParamIndex] = `page=${newPage}`
+            const newPage = page - 1
             setPage(newPage)
-            const newUri = uriParams.join("&")
-            
-            router.push(newUri)
+            router.push({href: router.pathname, query: {...router.query, page: newPage}})
         }
     }
 
     const clickBtnNextHandler = () => {
         if (page + 1 < pagesCount) {
-            
             const newPage = +page + 1
-            uriParams[uriPageParamIndex] = `page=${newPage}`
             setPage(newPage)
-            const newUri = uriParams.join("&")
-            
-            router.push(newUri)
+            router.push({href: router.pathname, query: {...router.query, page: newPage}})
         }
     }
 
     const clickPaginateHandler = (page) => {
         setPage(page)
-        uriParams[uriPageParamIndex] = `page=${page}`
-        const newUri = uriParams.join("&")
-        
-        router.push(newUri)
+        router.push({href: router.pathname, query: {...router.query, page}})
     }
 
     const paginateOffsetCalc = page % 10 === 0 ? Math.ceil(page / 10) : Math.ceil(page / 10) - 1
@@ -64,7 +53,7 @@ export const CatalogPaginate = ({pagesCount, currentPage, uri}) => {
                     {
                         repeat(pagesCount, (index) => {
                             return (
-                                <li key={index} onClick={() => clickPaginateHandler(index)} className={`cat-pagination__list-item ${index == page ? "is-active" : ""}`}>
+                                <li key={index} onClick={() => clickPaginateHandler(index)} className={`cat-pagination__list-item ${index == +page ? "is-active" : ""}`}>
                                     <a href="#">{index + 1}</a>
                                 </li>
                             )

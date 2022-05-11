@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Range } from "react-range";
 
 
@@ -8,15 +9,24 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
         values
     } = filterItem
 
-    const intervalMin = intervalValues[`${property_id}-interval-min`] ? 
+    const intervalMin = isFinite(intervalValues[`${property_id}-interval-min`]) ? 
         intervalValues[`${property_id}-interval-min`] : 
         values[0]
 
 
-    const intervalMax = intervalValues[`${property_id}-interval-max`] ? 
+    const intervalMax = isFinite(intervalValues[`${property_id}-interval-max`]) ? 
         intervalValues[`${property_id}-interval-max`] : 
         values[1]
 
+    const inputRefs = [useRef(null), useRef(null)]
+    const inputChangeHandler = (value, index) => {
+        if (value <= values[1] && value >= 0) {
+            setIntervalValues({
+                ...intervalValues, 
+                [`${property_id}-interval-${index ? "max" : "min"}`]: +value,
+            })
+        }
+    }
 
     return (
         <div className="cat-filter__liftingheight">
@@ -62,7 +72,7 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
                     </div>
                   </div>
                 )}
-                renderThumb={({ props, value }) => (
+                renderThumb={({ props, value, index }) => (
                 <div
                     {...props}
                     style={{
@@ -75,15 +85,25 @@ export const IntervalFilter = ({filterItem, setIntervalValues, intervalValues, d
                     justifyContent: "center"
                     }}
                 >
-                    <p style={{
-                        position: "absolute",
-                        bottom: "-20px",
-                        color: dark ? "#fff" : "black",
-                        fontSize: "14px",
-                        zIndex: "99999"
-                    }}>
-                        {value}
-                    </p>
+                    <input 
+                        style={{
+                            position: "absolute",
+                            bottom: "-20px",
+                            color: dark ? "#fff" : "black",
+                            fontSize: "14px",
+                            background: "none",
+                            textAlign: "center",
+                            border: "none",
+                            outline: "none",
+                            zIndex: "99999"
+
+                        }}
+                        ref={inputRefs[index]}
+                        onClick={() => {inputRefs[index]?.current?.focus()}}
+                        onChange={(values[1] >= 100) ? ((e) => inputChangeHandler(e.target.value, index)) : () => ""}
+                        value={value} 
+                    />
+                        
                 </div>
                 )}
             />

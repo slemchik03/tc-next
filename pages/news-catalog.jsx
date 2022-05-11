@@ -1,5 +1,6 @@
 import axios from "axios"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 const NewsCatalog = ({news}) => {
     return (
@@ -41,7 +42,7 @@ const NewsCatalog = ({news}) => {
                                     <p className="news-catalog__item-text">
 
                                     </p>
-                                    <a href="#" className="news-catalog__item-link">Читать полностью</a>
+                                    <Link href={"/news-catalog/"+element.id}><a className="news-catalog__item-link">Читать полностью</a></Link>
                                 </div>
                                 )
                             })

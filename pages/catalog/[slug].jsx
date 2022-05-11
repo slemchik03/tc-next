@@ -5,11 +5,14 @@ import { useState } from 'react';
 import { OrderCallModal } from '../../components/Modals/OrderCallModal';
 import { SearchVehicleForm } from '../../components/Forms/SearchVehicleForm';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Product({goods, catalogURI}) {
+export default function Product({goods}) {
     const [showMore, setShowMore] = useState(false)
     const [isModalShow, setModalShowStatus] = useState(false)
 
+    const router = useRouter()
+    
     const orderProductClickHandler = () => {
         setModalShowStatus(true)
     }
@@ -18,6 +21,7 @@ export default function Product({goods, catalogURI}) {
         const arr = value?.split("/") ? value.split("/") : []
         return arr[arr.length - 1]?.includes(".pdf")
     }
+
 
     if (goods) { // если товар существует - отрисовать его
         const item = goods[0] // получаем товар
@@ -34,7 +38,7 @@ export default function Product({goods, catalogURI}) {
                                 <Link href="/"><a  className="breadcrumbs__item breadcrumbs__item-white">Главная</a></Link>
                             </div>
                             <div className="breadcrumbs__block-white">
-                                <Link href={catalogURI}><a  className="breadcrumbs__item breadcrumbs__item-white">Каталог</a></Link>
+                                <a style={{cursor: 'pointer'}} onClick={router.back} className="breadcrumbs__item breadcrumbs__item-white">Каталог</a>
                             </div>
                             <div className="breadcrumbs__block">
                                 <span className="breadcrumbs__item">{item.article}</span>
@@ -147,13 +151,12 @@ export default function Product({goods, catalogURI}) {
 
 export async function getServerSideProps(context) {
     try {
-        const {params, query} = context
+        const {params} = context
         const response = (await axios.get(`https://trade-group.su/apicatalog?slug=${params.slug}`)).data
 
         return {
             props: {
                 goods: response,
-                catalogURI: decodeURIComponent(query["catalogURI"])
             }
         }
     } catch(e) {

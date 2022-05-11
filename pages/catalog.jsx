@@ -9,14 +9,9 @@ import { OrderCallModal } from "../components/Modals/OrderCallModal";
 
 export default function Catalog({
     goods, 
-    pageCount, 
-    currentPage, 
-    uri, 
-    filters,
-    category,
-    initialFilters,
+    pageCount,
+    filtersList,
     links,
-    filtersURI
 }) {
     const router = useRouter()
     const [selectedProduct, setSelectedProduct] = useState()
@@ -27,6 +22,10 @@ export default function Catalog({
         setModalShowStatus(true)
     }
 
+    const linkClickHandler = (quickLink) => {
+        router.query["quickLink"] = quickLink
+        router.push({href: router.path, query: {...router.query}})
+    }
     return (
       <div>
         <div className="requests">
@@ -46,11 +45,13 @@ export default function Catalog({
                       {
                           links?.map(link => {
                               const quickLink = link["url"]?.split("?")[1]
-                              const path = `/catalog?categories=${category}&filters=${filtersURI}&quickLink=${encodeURIComponent(quickLink)}&page=${currentPage}`
-                            
+
                               return (
                                 <li key={link.title}>
-                                    <a onClick={() => router.push(path)} className="requests__link">
+                                    <a 
+                                        onClick={() => linkClickHandler(quickLink)} 
+                                        className="requests__link"
+                                    >
                                         {link.title}
                                     </a>
                                 </li>
@@ -66,12 +67,7 @@ export default function Catalog({
   <div className="cat-filter">
       <div className="container">
           <div className="cat-filter__content">
-                <CatalogFilters 
-                    initialFilters={initialFilters} 
-                    currentPage={currentPage} 
-                    filters={filters}
-                    category={category}
-                />
+                <CatalogFilters filtersList={filtersList}/>
           </div>
       </div>
   </div>
@@ -104,7 +100,7 @@ export default function Catalog({
 
                         </div>
                         <div className="catalog__item-btns">
-                            <a onClick={() => router.push(`/catalog/${element.slug}?catalogURI=${encodeURIComponent(uri)}`)} className="catalog__item-more-btn">Подробнее</a>
+                            <a onClick={() => router.push(`/catalog/${element.slug}`)} className="catalog__item-more-btn">Подробнее</a>
                             <button onClick={() => orderProductClickHandler(element)} className="catalog__item-btn" data-modal>Оставить заявку</button>
                         </div>
                     </div>
@@ -118,11 +114,9 @@ export default function Catalog({
             }
           </div>
 
-            <CatalogPaginate 
-                pagesCount={pageCount} 
-                currentPage={currentPage} 
-                uri={uri}
-            />
+            <CatalogPaginate pagesCount={pageCount}/>
+                
+            
             <OrderCallModal closeModal={() => setModalShowStatus(false)} isOpen={isModalShow} productName={selectedProduct?.name}/>
       </div>
   </div>
@@ -145,7 +139,8 @@ export async function getServerSideProps(context) {
         }
         // Получаем все параметры с url
         const category = query["categories"]
-        const page = (!query["page"] || query["page"] < 0)  ? 0 : query["page"] // если пользователь не задал страницу ставим page=1
+        const page = !+query["page"] ? 0 : query["page"] // если пользователь не задал страницу ставим page=1
+        const filters = query["filters"] ? query["filters"] : ""
 
         const productsFilters = query["filters"] ? query["filters"].split(";").map((filter, index, arr) => {
             const filterParams = filter.split("-") // пример id-value
@@ -182,21 +177,24 @@ export async function getServerSideProps(context) {
 
         const products = productsResponse["products"]
         const pageCount = productsResponse["pages"]
-        const filters = productsResponse["allprops"]
+        const filtersList = productsResponse["allprops"]
         const links = productsResponse["links"]
 
+        if (pageCount <= page || page < 0) {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: `/catalog?categories=${category}&filters=${filters}&page=0`,
+                }
+            }
+        }
 
         return {
             props: {
                 goods: !products ? [] : products,
                 pageCount: pageCount ? pageCount : 0,
-                currentPage: page,
-                uri: context.resolvedUrl,
-                filters,
-                filtersURI: query["filters"],
-                category,
+                filtersList,
                 links,
-                initialFilters: !!productsFilters
             }
         }
     } catch (error) {
@@ -204,9 +202,6 @@ export async function getServerSideProps(context) {
             props: {
                 goods: [],
                 pageCount: 0,
-                currentPage: 0,
-                category: "4,5",
-                uri: "",
                 error: error + ""
             }
         }

@@ -19,10 +19,8 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
         .filter(el => el[1] !== false)
         .map(el => `${el[0]}-${el[1]}`)
         .join(';') 
-        console.log(path);
-        router.push(
-        `/catalog?categories=4,5&filters=${path}&page=0`
-        )
+
+        router.push(`/catalog?categories=4,5&filters=${path}&page=0`)
     }
 
     const resetInterval = () => {
