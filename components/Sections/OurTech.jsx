@@ -41,6 +41,14 @@ export const OurTech = () => {
                          prevEl: ".our-tech__prev"
                      }}
                 >
+                <SwiperSlide>
+                    <div className="our-tech__slider-item ">
+                        <img className="our-tech-slide2" src="/2.webp" alt=""  />
+                        <button data-filter className="our-tech__btn2">
+                            <Image onClick={clickHandler} objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
+                        </button>
+                    </div>
+                </SwiperSlide>     
                     <SwiperSlide>
                         <div className="our-tech__slider-item ">
                             <img  className="our-tech-slide3" src="/3.webp" alt=""  />
@@ -49,14 +57,6 @@ export const OurTech = () => {
                             </button>
                         </div>
                     </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="our-tech__slider-item">
-                            <img className="our-tech-slide1" src="/1.webp" alt=""  />
-                            <button data-filter className="our-tech__btn1">
-                                <Image onClick={clickHandler} objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
-                            </button>
-                        </div>
-                 </SwiperSlide>
                  <SwiperSlide>
                     <div className="our-tech__slider-item">
                     <img className="our-tech-slide1" src="/1.webp" alt=""  />
@@ -65,14 +65,7 @@ export const OurTech = () => {
                         </button>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
-                    <div className="our-tech__slider-item ">
-                        <img className="our-tech-slide2" src="/2.webp" alt=""  />
-                        <button data-filter className="our-tech__btn2">
-                            <Image onClick={clickHandler} objectFit='cover' width="55px" height="55px" src="/our-tech-btn.svg" alt="btn"  />
-                        </button>
-                    </div>
-                </SwiperSlide>       
+  
                 </Swiper>
                                     
                 </div>

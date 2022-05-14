@@ -1,22 +1,23 @@
 import ReactModal from "react-modal"
 import defaultModalStyles from "../../utils/defaultModalStyles"
 import {useForm} from "react-hook-form"
+import axios from "axios"
 
 ReactModal.setAppElement("body")
 
 export const OrderCallModal = ({isOpen, closeModal, productName}) => {
-    const {register, handleSubmit, reset} = useForm()
+    const {register, handleSubmit, reset, formState: {errors}} = useForm()
 
     const modalTitle = productName ? productName : "ЗАКАЗАТЬ ЗВОНОК"
 
     const submitHandler = async (data) => {
-        const response = await axios.get(`https://trade-group.su/mail?name=${data["name"]}&tel=${data["phone"]}`)
-
-        closeModal(true)
-        reset()
+        if (data["agreement"]) {
+            const response = await axios.get(`https://trade-group.su/mail?name=${data["name"]}&tel=${data["phone"]}`)
+            closeModal(true)
+            return reset()
+        }
      }
 
-     
     return (
         <ReactModal style={defaultModalStyles} isOpen={isOpen}>
             <div className="modal__dialog">
@@ -30,18 +31,27 @@ export const OrderCallModal = ({isOpen, closeModal, productName}) => {
                         <form onSubmit={handleSubmit(submitHandler)} id="form">
                             <div className="modal__title">{modalTitle}</div>
                             <div className="modal__subtitle">Оставьте свой номер, и мы перезвоним вам</div>
+                            {
+                                errors["agreement"] && (
+                                    <div className="delivery__form-item">
+                                        <p style={{color: "red"}}>Дайте свое согласие на обработку персональных данных</p>
+                                    </div>
+                                )
+
+                            }
                             <input {...register("phone", {required: true})} placeholder="Ваш номер телефона" name="phone" type="text" className="modal__input"></input> 
                             <input {...register("name", {required: true})} placeholder="Ваше имя" name="name" type="text" className="modal__input"></input> 
                             <button type="submit" className="modal__btn">Отправить</button>
-                            <div className="modal__checkbox">
-                                <input onChange={() => ""} id="modal-formAgreement" type="checkbox" name="agreement" className="modal__checkbox-input">
-                                </input> 
-                                <label htmlFor="modal-formAgreement" className="modal__checkbox-label">
+                            <div className="delivery__form-item">
+                            <div className="delivery__form-checkbox">
+                                    <input {...register("agreement", {required: true})} id="formAgreement" type="checkbox" className="delivery__checkbox-input"></input>
+                                    <label htmlFor="formAgreement" className="delivery__checkbox-label">
                                     <span>
                                         Я даю свое согласие на обработку персональных данных 
                                         и соглашаюсь с условиями и политикой конфиденциальности
                                     </span>
-                                </label>
+                                    </label>
+                            </div>
                             </div>
                         </form>
                     </div>   

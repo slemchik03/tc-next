@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const repeat = (n, callback) => {
@@ -13,9 +13,11 @@ const repeat = (n, callback) => {
 
 export const CatalogPaginate = ({pagesCount}) => {
     const router = useRouter()
-    const currentPage = router.query["page"]
+    const [page, setPage] = useState()
 
-    const [page, setPage] = useState(currentPage)
+    useEffect(() => {
+        setPage(router.query["page"])
+    }, [router.query])
 
     const clickBtnPrevHandler = () => {
         if (page - 1 >= 0) {

@@ -1,9 +1,12 @@
+import Link from "next/link"
+
 export const Footer = () => {
     return (
         <footer className="footer" id="footer">
         <div className="container">
             <div className="footer__wrapper">
                 <div className="footer__item">
+               
                     <a href="#top" className="footer__logo">
                         <img src="/logo.svg" alt="logo"  />
                     </a>
@@ -27,9 +30,9 @@ export const Footer = () => {
                 <div className="footer__item">
                     <p className="footer__item-title">КОМПАНИЯ</p>
                     <ul>
-                        <li><a href="#" className="footer__item-link">О компании</a></li>
-                        <li><a href="#" className="footer__item-link">Доставка</a></li>
-                        <li><a href="#" className="footer__item-link">Сервис и запчасти</a></li>
+                        <li><Link href="/company"><a className="footer__item-link">О компании</a></Link></li>
+                        <li><Link href="/#delivery"><a  className="footer__item-link">Доставка</a></Link></li>
+                        <li><Link href="/service"><a className="footer__item-link">Сервис и запчасти</a></Link></li>
                         <li><a href="#" className="footer__item-link">Реквизиты</a></li>
                         <li><a href="#" className="footer__item-link">Отзывы</a></li>
                     </ul>
@@ -37,9 +40,9 @@ export const Footer = () => {
                 <div className="footer__item">
                     <p className="footer__item-title">КАТАЛОГ</p>
                     <ul>
-                        <li><a href="#" className="footer__item-link">Вилочные погрузчики</a></li>
-                        <li><a href="#" className="footer__item-link">Техника для склада</a></li>
-                        <li><a href="#" className="footer__item-link">Навесное оборудование</a></li>
+                        <li><Link href="/catalog/categories/4?prevId=0"><a className="footer__item-link">Вилочные погрузчики</a></Link></li>
+                        <li><Link href="/catalog/categories/2?prevId=0"><a className="footer__item-link">Техника для склада</a></Link></li>
+                        <li><Link href="/catalog/categories/3?prevId=0"><a className="footer__item-link">Навесное оборудование</a></Link></li>
                     </ul>
                 </div>
             </div>

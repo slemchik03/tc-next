@@ -184,7 +184,7 @@ export async function getServerSideProps(context) {
             return {
                 redirect: {
                     permanent: false,
-                    destination: `/catalog?categories=${category}&filters=${filters}&page=0`,
+                    destination: `/catalog?categories=${category}&filters=${filters}&quickLink=${query["quickLink"] ? query["quickLink"] : ""}&page=0`,
                 }
             }
         }

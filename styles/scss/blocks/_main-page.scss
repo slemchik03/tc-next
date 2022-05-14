@@ -17,7 +17,7 @@
     width: 100%;
     height: 1px;
     background: rgba(#df0000, 0.5);
-    top: 103px;
+    top: 133px;
     left: 0;
   }
   &__mobile-logo {
@@ -453,13 +453,18 @@
   }
   &__form-checkbox {
     margin-top: 30px;
+    position: relative;
   }
   &__checkbox-input {
-    display: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    z-index: 100;
+    cursor: pointer;
+    left: -2px;
   }
-  .delivery__checkbox-input:checked + .delivery__checkbox-label::after {
-    transform: scale(1);
-  }
+
   &__checkbox-label {
     width: 450px;
     font-size: 14px;
@@ -495,6 +500,9 @@
   }
 }
 
+.delivery__checkbox-input:checked + .delivery__checkbox-label::after {
+  transform: scale(1);
+}
 .sale {
   width: 100%;
   background: url(../../../public/sale-bg.webp);

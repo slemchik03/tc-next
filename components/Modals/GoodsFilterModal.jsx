@@ -2,7 +2,6 @@ import ReactModal from "react-modal"
 import defaultModalStyles from "../../utils/defaultModalStyles"
 import {useForm} from "react-hook-form"
 import { useRouter } from "next/router"
-import { IntervalFilter } from "../CatalogFilter/IntervalFilter"
 import { useState } from "react"
 import { DefaultFilters } from "../CatalogFilter/DefaultFilters"
 
@@ -38,25 +37,98 @@ export const GoodsFilterModal = ({isOpen, closeModal}) => {
                         </svg>             
                     </div>
                     <form onSubmit={handleSubmit(submitHandler)} className="filter__form">
-                        <div className="filter__manufacturer">
-                            <p className="filter__manufacturer-title">Производитель</p>
-                            <div className="filter__manufacturer-content">
-                                <div className="filter__manufacturer-item">
-                                    <input value="Все"  id="manufacturer-all" className="filter__radio" type="checkbox"></input> 
-                                    <label className="filter__label" htmlFor="manufacturer-all">Все</label>
-                                </div>
-                                <div className="filter__manufacturer-item">
-                                    <input value="Китай" id="manufacturer-china" className="filter__radio" type="checkbox"></input> 
-                                    <label className="filter__label" htmlFor="manufacturer-china">Китай</label>
-                                </div>
-                                <div className="filter__manufacturer-item">
-                                    <input  value="Япония / США" id="manufacturer-japan-usa" className="filter__radio" type="checkbox"></input> 
-                                    <label className="filter__label" htmlFor="manufacturer-japan-usa">Япония / США</label>
-                                </div>
-                            </div>
+                    <div className="cat-filter__engine">
+                        <p  style={{color: "#000"}} className="cat-filter__engine-title" >Погрузчики</p>
+
+                        <div className="cat-filter__engine-content">
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">С боковой загрузкой </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Большегрузные </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Внедорожные </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Электрические </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Дизельные </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Газ/бензиновые </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Техника для терминала</label>
                         </div>
 
+                    </div>
 
+                </div>
+                <div className="cat-filter__engine">
+                        <p  style={{color: "#000"}} className="cat-filter__engine-title" >Транспортировщики паллет</p>
+
+                        <div className="cat-filter__engine-content">
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Перевозчики паллет </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Самоходные электротележки </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Самоходные электротележки с ручным подъемом  </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Электрические </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Сопровождаемые </label>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div className="cat-filter__engine">
+                        <p  style={{color: "#000"}} className="cat-filter__engine-title" >Штабелеры</p>
+
+                        <div className="cat-filter__engine-content">
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Ручные </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Самоходные </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">С электроподъемом </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">С площадкой для оператора </label>
+                        </div>
+                        <div className="cat-filter__engine-item">
+                            <input  className="cat-filter__radio" type="checkbox" />
+                            <label  className="cat-filter__label" style={{color: "#000"}} htmlFor="cat-engine-petrol-gas">Сопровождаемые </label>
+                        </div>
+
+                    </div>
+
+                </div>
                         <DefaultFilters 
                             register={register}
                             setIntervalValues={setIntervalValues}
