@@ -15,12 +15,15 @@
     background: #ffff;
     border: 1px solid #df0000;
     &-item {
-      width: 600px;
-      height: 435px;
+      max-width: 600px;
+      max-height: 435px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       img {
-        width: 600px;
-        height: 435px;
-        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     .swiper-pagination-bullet-active {

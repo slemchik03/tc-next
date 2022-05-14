@@ -47,7 +47,7 @@ export default function Product({goods}) {
                         <div className="product-card__wrapper">
                             <div className="product-card__img-box">
                                 <div className="product-card__slider">
-                                <div className="product-card__slider-item swiper-slide">
+                                <div className="product-card__slider-item">
                                     <Image width="400px" height="355px" src={item.img} alt=""/>
                                 </div>
                                 </div>
