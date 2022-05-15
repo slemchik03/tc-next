@@ -1510,9 +1510,6 @@
     &__form-checkbox {
       margin-top: 30px;
     }
-    &__checkbox-input {
-      display: none;
-    }
     .delivery__checkbox-input:checked + .delivery__checkbox-label::after {
       transform: scale(1);
     }

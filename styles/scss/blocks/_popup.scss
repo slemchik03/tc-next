@@ -60,6 +60,8 @@
     &:last-of-type {
       margin: 14px 0 0;
     }
+    @media (max-width: 1200px) {
+    }
   }
   &__btn {
     margin-top: 32px;

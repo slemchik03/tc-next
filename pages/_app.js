@@ -1,5 +1,7 @@
 import { Layout } from '../components/Sections/Layout';
-import NextNProgress from "nextjs-progressbar";
+import AdminLayout  from '../components/Admin/Layout';
+import { useRouter } from 'next/router';
+
 import '../styles/scss/style.scss'
 
 import 'swiper/css';
@@ -7,15 +9,16 @@ import 'swiper/css/navigation';
 
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+  if (router.pathname.startsWith("/admin")) {
+    return (
+      <AdminLayout>
+        <Component {...pageProps} />
+      </AdminLayout>
+    )
+  }
   return (
        <Layout>
-         <NextNProgress
-          color="red"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={3}
-          showOnShallow={true}
-         />
          <Component {...pageProps} />
        </Layout>
   );

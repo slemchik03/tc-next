@@ -24,9 +24,11 @@ export const OrderLizingModal = ({isOpen, closeModal}) => {
                                 <rect width="22.8149" height="2.28149" rx="1" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 17.7458 16.1326)" fill="#DF0000"/>
                             </svg>                                
                         </div>
-                        <form onSubmit={handleSubmit(submitHandler)} id="form">
-                            <div className="modal__title">ЗАКАЗАТЬ ЛИЗИНГ</div>
-                            <div className="modal__subtitle">Оставьте свой номер, и мы перезвоним вам</div>
+                            <p className="map__form-title">Подберем технику за 15 минут</p>
+                            <p className="map__form-subtitle">Оставьте свой номер, и мы перезвоним вам</p>
+
+                            <form onSubmit={handleSubmit(submitHandler)} id="form">
+
                             {
                                 errors["agreement"] && (
                                     <div className="delivery__form-item">
@@ -35,10 +37,12 @@ export const OrderLizingModal = ({isOpen, closeModal}) => {
                                 )
 
                             }
-                            <input {...register("phone", {required: true})} placeholder="Ваш номер телефона" name="phone" type="text" className="modal__input"></input> 
-                            <input style={{marginTop: "5px"}} {...register("name", {required: true})} placeholder="Ваше имя" name="name" type="text" className="modal__input"></input>
-                            <input {...register("message", {required: true})} placeholder="Какую технику вы хотите" name="message" type="text" className="modal__input"></input>
-                            <button type="submit" className="modal__btn">Сделать заказ.</button>
+                                 <input {...register("phone", {required: true})} placeholder="Ваш номер телефона" name="phone" type="text" className="modal__input"></input> 
+                                <input style={{marginTop: "5px"}} {...register("name", {required: true})} placeholder="Ваше имя" name="name" type="text" className="modal__input"></input>
+                                <input {...register("message", {required: true})} placeholder="Какую технику вы хотите" name="message" type="text" className="modal__input"></input>
+                            
+
+                            <button style={{marginTop: "10px"}} type="submit" className="modal__btn">Сделать заказ.</button>
                             <div className="delivery__form-item">
                             <div className="delivery__form-checkbox">
                                     <input {...register("agreement", {required: true})} id="formAgreement" type="checkbox" className="delivery__checkbox-input"></input>
@@ -51,7 +55,8 @@ export const OrderLizingModal = ({isOpen, closeModal}) => {
                             </div>
                             </div>
                         </form>
-                    </div>   
+                            
+                        </div>
                 </div>
         </ReactModal>
             
